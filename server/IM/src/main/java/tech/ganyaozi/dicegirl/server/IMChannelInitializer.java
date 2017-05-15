@@ -12,16 +12,16 @@ import java.util.concurrent.TimeUnit;
 
 public class IMChannelInitializer extends ChannelInitializer<ServerChannel> {
 
-    private int WRITE_IDLE_TIME_OUT = 5;
-    private int READ_IDLE_TIME_OUT = 10;
-    private int ALL_IDLE_TIME_OUT = 10;
+    static int WRITE_IDLE_TIME_OUT = 5;
+    static int READ_IDLE_TIME_OUT = 10;
+    static int ALL_IDLE_TIME_OUT = 10;
 
     protected void initChannel(ServerChannel serverChannel) throws Exception {
-
         serverChannel.pipeline()
                 .addLast(new ProtobufVarint32FrameDecoder())
                 .addLast(new ProtobufDecoder(BaseMessage.baseMessage.getDefaultInstance()))
                 .addLast(new ProtobufEncoder())
-                .addLast(new IdleStateHandler(READ_IDLE_TIME_OUT, WRITE_IDLE_TIME_OUT, ALL_IDLE_TIME_OUT, TimeUnit.MINUTES));
+                .addLast(new IdleStateHandler(READ_IDLE_TIME_OUT, WRITE_IDLE_TIME_OUT, ALL_IDLE_TIME_OUT, TimeUnit.MINUTES))
+                .addLast(new IMChannelHandler());
     }
 }
