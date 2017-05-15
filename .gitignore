@@ -1,7 +1,5 @@
 *.idea
 *.iml
 
-*/target
-server/IM/target/generated-sources/
-server/IM/target/generated-test-sources/
 /server/IM/target/
+
