@@ -1,14 +1,9 @@
-*.iml
-/server/IM/target/
-*.log
-
-app/PC_mock/log/
 app/PC_mock/target/
-.idea/*
-/out/
+server/IM/target/
 
-app/Android/
-app/IOS/
-app/PC_mock/src/main/resources/tech/
-server/IM/log/
-server/IM/src/main/resources/tech/
+/.idea
+/out/
+*.iml
+*.log
+*.classpath
+*.project
