@@ -6,7 +6,10 @@ import tech.ganyaozi.dicegirl.proto.BaseMessage;
 import tech.ganyaozi.dicegirl.utils.ConsoleTool;
 
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.Executors;
 
 public class launcher {
 
@@ -18,16 +21,23 @@ public class launcher {
         serverList.forEach(inetSocketAddress -> strs.add(inetSocketAddress.toString()));
         int index = ConsoleTool.showInConsole(strs);
         IMClient client = new IMClient();
-        client.connect(serverList.get(index));
-        while(true){
+        Executors.newSingleThreadExecutor().submit(() -> client.connect(serverList.get(index)));
+        int count = 0;
+        while (true) {
             String cmd = ConsoleTool.readLine();
-            if (!StringUtils.equals(cmd,"q")){
-                client.channel.writeAndFlush(BaseMessage.baseMessage.getDefaultInstance());
-            }else {
+            if (!StringUtils.equals(cmd, "q")) {
+                count++;
+                client.channel.writeAndFlush(BaseMessage.baseMessage.newBuilder()
+                        .setId(count)
+                        .setContent(new String(cmd.getBytes(), Charset.forName("UTF-8")))
+                        .setTimeStamp(new Date().toString())
+                        .build());
+            } else {
                 break;
             }
         }
     }
+
     private static void initServerList() {
         serverList.add(new InetSocketAddress("localhost", 44444));
     }

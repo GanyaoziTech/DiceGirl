@@ -7,10 +7,8 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
 import java.net.SocketAddress;
-import java.util.Date;
 
 public class IMClient {
 
@@ -30,25 +28,11 @@ public class IMClient {
         try {
             ChannelFuture future = bootstrap.connect(address).sync();
             this.channel = future.channel();
-            hello(future);
             future.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             bossGroup.shutdownGracefully();
-        }
-    }
-
-    private void hello(ChannelFuture future) throws InterruptedException {
-        if (future.isSuccess()) {
-            byte[] msg = BaseMessage.baseMessage.newBuilder()
-                    .setId(1)
-                    .setTimeStamp(new Date().toString())
-                    .setContent("Hello world")
-                    .build().toByteArray();
-            future.addListener(future1 -> {
-                future.channel().writeAndFlush(msg);
-            });
         }
     }
 

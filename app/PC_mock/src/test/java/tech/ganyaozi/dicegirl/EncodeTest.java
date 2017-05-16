@@ -24,11 +24,11 @@ public class EncodeTest {
     private ChannelHandler decoder = new ProtobufDecoder(BaseMessage.baseMessage.getDefaultInstance());
     private ChannelHandler encoder = new ProtobufEncoder();
     //    private ChannelHandler idleStateHandler = new IdleStateHandler(IMChannelInitializer.READ_IDLE_TIME_OUT, IMChannelInitializer.WRITE_IDLE_TIME_OUT, IMChannelInitializer.ALL_IDLE_TIME_OUT, TimeUnit.MINUTES);
-    private ChannelHandler iMHandler = new IMObjectChannelHandler();
+//    private ChannelHandler iMHandler = new IMObjectChannelHandler();
 
     @Before
     public void before() {
-        channel = new EmbeddedChannel(pvfDecoder,decoder, encoder, iMHandler);
+        channel = new EmbeddedChannel(pvfDecoder, decoder, encoder);
     }
 
     @Test

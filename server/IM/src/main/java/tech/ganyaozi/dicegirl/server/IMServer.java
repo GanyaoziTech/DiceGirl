@@ -17,7 +17,6 @@ public class IMServer {
     private static final int WORKER_GROUP_SIZE = 10;
 
     private static EventLoopGroup bossGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
-
     private static EventLoopGroup workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);
 
     public static void init(int port) {
@@ -31,8 +30,9 @@ public class IMServer {
         bootstrap.group(bossGroup, workerGroup)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.SO_REUSEADDR, true)
-                .childHandler(new LoggingHandler(LogLevel.INFO))
-                .handler(new IMChannelInitializer());
+                .option(ChannelOption.SO_BACKLOG, 100)
+                .handler(new LoggingHandler(LogLevel.INFO))
+                .childHandler(new IMChannelInitializer());
         try {
             ChannelFuture future = bootstrap.bind(port).sync();
             future.channel().closeFuture().sync();
