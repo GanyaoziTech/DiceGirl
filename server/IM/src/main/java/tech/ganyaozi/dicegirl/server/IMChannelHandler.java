@@ -6,13 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
-public class IMChannelHandler extends SimpleChannelInboundHandler<BaseMessage> {
+public class IMChannelHandler extends SimpleChannelInboundHandler<Object> {
 
     private static final Logger logger = LoggerFactory.getLogger(IMChannelHandler.class);
-    
-    protected void messageReceived(ChannelHandlerContext channelHandlerContext, BaseMessage msg) throws Exception {
 
-        logger.info("message received : {}." + msg);
-
+    @Override
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object msg) throws Exception {
+        logger.info("Object received : {}. Type : {}", msg, msg.getClass().getName());
+        if (msg instanceof BaseMessage.baseMessage) {
+            logger.info("base message : {} ", msg);
+        }
     }
 }

@@ -1,7 +1,9 @@
-*.idea
 *.iml
 /server/IM/target/
-
 *.log
-
 .*
+app/PC_mock/log/
+app/PC_mock/target/
+
+/out/
+

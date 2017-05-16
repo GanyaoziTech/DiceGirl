@@ -20,7 +20,7 @@ public class IMServer {
 
     private static EventLoopGroup workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);
 
-    private static void init(int port) {
+    public static void init(int port) {
         ServerBootstrap bootstrap = new ServerBootstrap();
 
         if (isLinux()){
@@ -28,7 +28,6 @@ public class IMServer {
         }else {
             bootstrap.channel(NioServerSocketChannel.class);
         }
-
         bootstrap.group(bossGroup, workerGroup)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.SO_REUSEADDR, true)
