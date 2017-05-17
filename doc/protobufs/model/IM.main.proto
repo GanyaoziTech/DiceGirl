@@ -1,12 +1,13 @@
 /*  main  */
-syntax = "proto2";
+syntax = "proto3";
 package tech.ganyaozi.dicegirl.proto;
-option java_package ="tech.ganyaozi.dicegirl.proto";
+option java_package = "tech.ganyaozi.dicegirl.proto";
 option java_outer_classname = "BaseMessage";
 
 
-message baseMessage{
-    required int32 id = 1;
-    required string timeStamp = 2;
-    required string content = 3;
+message baseMessage {
+    int32   cmd = 1;
+    fixed64 timeStamp = 2;
+    string  userID = 3;
+    bytes   content = 4;
 }

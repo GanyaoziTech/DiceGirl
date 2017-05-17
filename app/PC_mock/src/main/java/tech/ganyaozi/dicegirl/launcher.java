@@ -1,14 +1,15 @@
 package tech.ganyaozi.dicegirl;
 
+import com.google.protobuf.ByteString;
 import org.apache.commons.lang3.StringUtils;
 import tech.ganyaozi.dicegirl.client.IMClient;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
 import tech.ganyaozi.dicegirl.utils.ConsoleTool;
 
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.Executors;
 
 public class launcher {
@@ -28,10 +29,11 @@ public class launcher {
             if (!StringUtils.equals(cmd, "q")) {
                 count++;
                 client.channel.writeAndFlush(BaseMessage.baseMessage.newBuilder()
-                        .setId(count)
-                        .setContent(new String(cmd.getBytes(), Charset.forName("UTF-8")))
-                        .setTimeStamp(new Date().toString())
-                        .build());
+                                .setCmd(count)
+                                .setUserID(UUID.randomUUID().toString())
+                                .setTimeStamp(new Date().getTime())
+                                .setContent(ByteString.copyFrom(cmd.getBytes()))
+                                .build());
             } else {
                 break;
             }

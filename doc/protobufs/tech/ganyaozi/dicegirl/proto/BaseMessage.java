@@ -31,7 +31,7 @@ public final class BaseMessage {
     /**
      * <code>string userID = 3;</code>
      */
-    String getUserID();
+    java.lang.String getUserID();
     /**
      * <code>string userID = 3;</code>
      */
@@ -61,7 +61,7 @@ public final class BaseMessage {
       content_ = com.google.protobuf.ByteString.EMPTY;
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
@@ -97,7 +97,7 @@ public final class BaseMessage {
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               userID_ = s;
               break;
@@ -120,14 +120,14 @@ public final class BaseMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
+      return tech.ganyaozi.dicegirl.proto.BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
+      return tech.ganyaozi.dicegirl.proto.BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              baseMessage.class, Builder.class);
+              tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.class, tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.Builder.class);
     }
 
     public static final int CMD_FIELD_NUMBER = 1;
@@ -149,18 +149,18 @@ public final class BaseMessage {
     }
 
     public static final int USERID_FIELD_NUMBER = 3;
-    private volatile Object userID_;
+    private volatile java.lang.Object userID_;
     /**
      * <code>string userID = 3;</code>
      */
-    public String getUserID() {
-      Object ref = userID_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getUserID() {
+      java.lang.Object ref = userID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         userID_ = s;
         return s;
       }
@@ -170,11 +170,11 @@ public final class BaseMessage {
      */
     public com.google.protobuf.ByteString
         getUserIDBytes() {
-      Object ref = userID_;
-      if (ref instanceof String) {
+      java.lang.Object ref = userID_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         userID_ = b;
         return b;
       } else {
@@ -242,15 +242,15 @@ public final class BaseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof baseMessage)) {
+      if (!(obj instanceof tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage)) {
         return super.equals(obj);
       }
-      baseMessage other = (baseMessage) obj;
+      tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage other = (tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage) obj;
 
       boolean result = true;
       result = result && (getCmd()
@@ -264,7 +264,7 @@ public final class BaseMessage {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -285,69 +285,69 @@ public final class BaseMessage {
       return hash;
     }
 
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static baseMessage parseFrom(byte[] data)
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static baseMessage parseFrom(java.io.InputStream input)
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static baseMessage parseDelimitedFrom(java.io.InputStream input)
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static baseMessage parseDelimitedFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static baseMessage parseFrom(
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -359,7 +359,7 @@ public final class BaseMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(baseMessage prototype) {
+    public static Builder newBuilder(tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -367,9 +367,9 @@ public final class BaseMessage {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -379,17 +379,17 @@ public final class BaseMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:tech.ganyaozi.dicegirl.proto.baseMessage)
-        baseMessageOrBuilder {
+        tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
+        return tech.ganyaozi.dicegirl.proto.BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
+        return tech.ganyaozi.dicegirl.proto.BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                baseMessage.class, Builder.class);
+                tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.class, tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.Builder.class);
       }
 
       // Construct using tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.newBuilder()
@@ -398,7 +398,7 @@ public final class BaseMessage {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -422,23 +422,23 @@ public final class BaseMessage {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
+        return tech.ganyaozi.dicegirl.proto.BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
       }
 
-      public baseMessage getDefaultInstanceForType() {
-        return baseMessage.getDefaultInstance();
+      public tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage getDefaultInstanceForType() {
+        return tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.getDefaultInstance();
       }
 
-      public baseMessage build() {
-        baseMessage result = buildPartial();
+      public tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage build() {
+        tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public baseMessage buildPartial() {
-        baseMessage result = new baseMessage(this);
+      public tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage buildPartial() {
+        tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage result = new tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage(this);
         result.cmd_ = cmd_;
         result.timeStamp_ = timeStamp_;
         result.userID_ = userID_;
@@ -474,16 +474,16 @@ public final class BaseMessage {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof baseMessage) {
-          return mergeFrom((baseMessage)other);
+        if (other instanceof tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage) {
+          return mergeFrom((tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(baseMessage other) {
-        if (other == baseMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage other) {
+        if (other == tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.getDefaultInstance()) return this;
         if (other.getCmd() != 0) {
           setCmd(other.getCmd());
         }
@@ -509,11 +509,11 @@ public final class BaseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        baseMessage parsedMessage = null;
+        tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (baseMessage) e.getUnfinishedMessage();
+          parsedMessage = (tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -575,20 +575,20 @@ public final class BaseMessage {
         return this;
       }
 
-      private Object userID_ = "";
+      private java.lang.Object userID_ = "";
       /**
        * <code>string userID = 3;</code>
        */
-      public String getUserID() {
-        Object ref = userID_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getUserID() {
+        java.lang.Object ref = userID_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           userID_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -596,11 +596,11 @@ public final class BaseMessage {
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
-        Object ref = userID_;
+        java.lang.Object ref = userID_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           userID_ = b;
           return b;
         } else {
@@ -611,7 +611,7 @@ public final class BaseMessage {
        * <code>string userID = 3;</code>
        */
       public Builder setUserID(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -687,12 +687,12 @@ public final class BaseMessage {
     }
 
     // @@protoc_insertion_point(class_scope:tech.ganyaozi.dicegirl.proto.baseMessage)
-    private static final baseMessage DEFAULT_INSTANCE;
+    private static final tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new baseMessage();
+      DEFAULT_INSTANCE = new tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage();
     }
 
-    public static baseMessage getDefaultInstance() {
+    public static tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -710,12 +710,12 @@ public final class BaseMessage {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<baseMessage> getParserForType() {
       return PARSER;
     }
 
-    public baseMessage getDefaultInstanceForType() {
+    public tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -734,7 +734,7 @@ public final class BaseMessage {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\023model/IM.main.proto\022\034tech.ganyaozi.dic" +
       "egirl.proto\"N\n\013baseMessage\022\013\n\003cmd\030\001 \001(\005\022" +
       "\021\n\ttimeStamp\030\002 \001(\006\022\016\n\006userID\030\003 \001(\t\022\017\n\007co" +
@@ -758,7 +758,7 @@ public final class BaseMessage {
     internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor,
-        new String[] { "Cmd", "TimeStamp", "UserID", "Content", });
+        new java.lang.String[] { "Cmd", "TimeStamp", "UserID", "Content", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

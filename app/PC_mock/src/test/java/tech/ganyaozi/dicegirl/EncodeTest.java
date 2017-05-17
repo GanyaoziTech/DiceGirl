@@ -1,5 +1,6 @@
 package tech.ganyaozi.dicegirl;
 
+import com.google.protobuf.ByteString;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.embedded.EmbeddedChannel;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
 import java.util.Date;
+import java.util.UUID;
 
 import static org.junit.Assert.assertTrue;
 
@@ -34,9 +36,10 @@ public class EncodeTest {
     @Test
     public void protobufMessageDecodeTest() {
         BaseMessage.baseMessage message = BaseMessage.baseMessage.newBuilder()
-                .setId(1)
-                .setTimeStamp(new Date().toString())
-                .setContent("Hello World")
+                .setCmd(1)
+                .setUserID(UUID.randomUUID().toString())
+                .setTimeStamp(new Date().getTime())
+                .setContent(ByteString.copyFrom("Hello world".getBytes()))
                 .build();
 
         // write message

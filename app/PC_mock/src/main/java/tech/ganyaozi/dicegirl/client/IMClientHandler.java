@@ -1,5 +1,6 @@
 package tech.ganyaozi.dicegirl.client;
 
+import com.google.protobuf.ByteString;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class IMClientHandler extends ChannelHandlerAdapter {
 
@@ -30,9 +32,10 @@ public class IMClientHandler extends ChannelHandlerAdapter {
 
     private BaseMessage.baseMessage subReq(int i) {
         return BaseMessage.baseMessage.newBuilder()
-                .setId(i)
-                .setTimeStamp(new Date().toString())
-                .setContent("Hello world")
+                .setCmd(1)
+                .setUserID(UUID.randomUUID().toString())
+                .setTimeStamp(new Date().getTime())
+                .setContent(ByteString.copyFrom("Hello world".getBytes()))
                 .build();
     }
 
