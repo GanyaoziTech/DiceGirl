@@ -1,46 +1,57 @@
 package tech.ganyaozi.dicegirl.client;
 
-import com.google.protobuf.ByteString;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.util.AttributeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tech.ganyaozi.dicegirl.proto.BaseMessage;
-
-import java.util.Date;
-import java.util.UUID;
+import tech.ganyaozi.dicegirl.msg.Command;
+import tech.ganyaozi.dicegirl.msg.PingPongMessage;
+import proto.BaseMessage;
 
 public class IMClientHandler extends ChannelHandlerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(IMClientHandler.class);
+
+    private static final AttributeKey<String> key = AttributeKey.valueOf("uuid");
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
         BaseMessage.baseMessage req = (BaseMessage.baseMessage) msg;
         logger.info("Service accept client subscribe req:[" + req.toString() + "]");
-        //ctx.writeAndFlush(resp(req.getSubReqID()));
+        // 设置本次连接的唯一ID
+        if (req.getCmd() == Command.Client_Init.getValue()){
+            ctx.attr(key).set(req.getUserID());
+        }
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        for (int i = 0; i < 10; i++) {
-            ctx.write(subReq(i));
-        }
-        ctx.flush();
-    }
-
-    private BaseMessage.baseMessage subReq(int i) {
-        return BaseMessage.baseMessage.newBuilder()
-                .setCmd(1)
-                .setUserID(UUID.randomUUID().toString())
-                .setTimeStamp(new Date().getTime())
-                .setContent(ByteString.copyFrom("Hello world".getBytes()))
-                .build();
+        super.channelActive(ctx);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.flush();
+    }
+
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent){
+            logger.warn("Idle event : {}" , ((IdleStateEvent) evt).state());
+            switch (((IdleStateEvent) evt).state()){
+                case ALL_IDLE:
+                case WRITER_IDLE :
+                    ctx.writeAndFlush(PingPongMessage.getPingInstance(ctx.attr(key).get()));
+                    break;
+                case READER_IDLE:
+                    break;
+                default:
+                    break;
+            }
+        }
+        super.userEventTriggered(ctx, evt);
     }
 }

@@ -7,10 +7,14 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.SocketAddress;
 
-public class IMClient {
+public class DiceIMClient {
+
+    private static final Logger logger = LoggerFactory.getLogger(DiceIMClient.class);
 
     private static final int BOSS_GROUP_SIZE = 1;
 
@@ -29,12 +33,11 @@ public class IMClient {
             ChannelFuture future = bootstrap.connect(address).sync();
             this.channel = future.channel();
             future.channel().closeFuture().sync();
+            logger.error("Channel Closed !!");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             bossGroup.shutdownGracefully();
         }
     }
-
-
 }

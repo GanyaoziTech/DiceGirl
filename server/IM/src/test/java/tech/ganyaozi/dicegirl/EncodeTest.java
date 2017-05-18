@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tech.ganyaozi.dicegirl.proto.BaseMessage;
-import tech.ganyaozi.dicegirl.server.IMProtoBufHandler;
+import proto.BaseMessage;
+import tech.ganyaozi.dicegirl.server.IMChannelHandler;
 
 import java.util.Date;
 import java.util.UUID;
@@ -23,7 +23,7 @@ public class EncodeTest {
     private EmbeddedChannel channel;
     private ChannelHandler decoder = new ProtobufDecoder(BaseMessage.baseMessage.getDefaultInstance());
     private ChannelHandler encoder = new ProtobufEncoder();
-    private ChannelHandler iMHandler = new IMProtoBufHandler();
+    private ChannelHandler iMHandler = new IMChannelHandler();
 
     @Before
     public void before() {

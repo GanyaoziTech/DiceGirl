@@ -6,13 +6,17 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
-import tech.ganyaozi.dicegirl.proto.BaseMessage;
+import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.AttributeKey;
+import proto.BaseMessage;
 
 public class IMChannelInitializer extends ChannelInitializer<NioSocketChannel> {
 
-    static int WRITE_IDLE_TIME_OUT = 5;
-    static int READ_IDLE_TIME_OUT = 10;
-    static int ALL_IDLE_TIME_OUT = 10;
+    public final AttributeKey<String> ids = AttributeKey.valueOf("ID");
+
+    private static int WRITE_IDLE_TIME_OUT = 0;
+    private static int READ_IDLE_TIME_OUT = 20;
+    private static int ALL_IDLE_TIME_OUT = 0;
 
     protected void initChannel(NioSocketChannel serverChannel) throws Exception {
         serverChannel.pipeline()
@@ -21,6 +25,7 @@ public class IMChannelInitializer extends ChannelInitializer<NioSocketChannel> {
                 .addLast(new ProtobufDecoder(BaseMessage.baseMessage.getDefaultInstance()))
                 .addLast(new ProtobufVarint32LengthFieldPrepender())
                 .addLast(new ProtobufEncoder())
-                .addLast(new IMObjectChannelHandler());
+                .addLast(new IdleStateHandler(READ_IDLE_TIME_OUT,WRITE_IDLE_TIME_OUT,ALL_IDLE_TIME_OUT))
+                .addLast(new IMChannelHandler());
     }
 }

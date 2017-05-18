@@ -2,8 +2,8 @@ package tech.ganyaozi.dicegirl;
 
 import com.google.protobuf.ByteString;
 import org.apache.commons.lang3.StringUtils;
-import tech.ganyaozi.dicegirl.client.IMClient;
-import tech.ganyaozi.dicegirl.proto.BaseMessage;
+import tech.ganyaozi.dicegirl.client.DiceIMClient;
+import proto.BaseMessage;
 import tech.ganyaozi.dicegirl.utils.ConsoleTool;
 
 import java.net.InetSocketAddress;
@@ -21,7 +21,7 @@ public class launcher {
         ArrayList<String> strs = new ArrayList<>();
         serverList.forEach(inetSocketAddress -> strs.add(inetSocketAddress.toString()));
         int index = ConsoleTool.showInConsole(strs);
-        IMClient client = new IMClient();
+        DiceIMClient client = new DiceIMClient();
         Executors.newSingleThreadExecutor().submit(() -> client.connect(serverList.get(index)));
         int count = 0;
         while (true) {

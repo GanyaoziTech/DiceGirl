@@ -7,10 +7,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 
-public class IMServer {
+public class DiceIMServer {
 
     private static final int BOSS_GROUP_SIZE = 1;
 
@@ -31,7 +29,6 @@ public class IMServer {
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.SO_REUSEADDR, true)
                 .option(ChannelOption.SO_BACKLOG, 100)
-                .handler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new IMChannelInitializer());
         try {
             ChannelFuture future = bootstrap.bind(port).sync();

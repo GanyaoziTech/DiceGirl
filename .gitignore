@@ -1,5 +1,6 @@
 app/PC_mock/target/
 server/IM/target/
+server/common/target/
 
 /.idea
 /out/

@@ -8,10 +8,11 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tech.ganyaozi.dicegirl.proto.BaseMessage;
+import proto.BaseMessage;
 
 import java.util.Date;
 import java.util.UUID;
@@ -34,6 +35,7 @@ public class EncodeTest {
     }
 
     @Test
+    @Ignore
     public void protobufMessageDecodeTest() {
         BaseMessage.baseMessage message = BaseMessage.baseMessage.newBuilder()
                 .setCmd(1)
@@ -45,12 +47,8 @@ public class EncodeTest {
         // write message
         assertTrue(channel.writeInbound(Unpooled.wrappedBuffer(message.toByteArray())));
         assertTrue(channel.finish());
-
         logger.info("{}", (Object[]) channel.readInbound());
-
         //read message
-
-
     }
 
 }
