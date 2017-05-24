@@ -7,7 +7,9 @@ option java_outer_classname = "BaseMessage";
 
 message baseMessage {
     int32   cmd = 1;
-    fixed64 timeStamp = 2;
-    string  userID = 3;
-    bytes   content = 4;
+    fixed64 seq = 2;
+    string  srcID = 3;
+    string  dstID = 4;
+    bool    ack = 5;
+    bytes   content = 6;
 }
