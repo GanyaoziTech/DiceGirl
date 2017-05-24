@@ -1,4 +1,4 @@
-package tech.ganyaozi.dicegirl.server;
+package tech.ganyaozi.dicegirl.server.netty;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioSocketChannel;

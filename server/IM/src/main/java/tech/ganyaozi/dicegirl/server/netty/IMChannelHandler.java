@@ -1,4 +1,4 @@
-package tech.ganyaozi.dicegirl.server;
+package tech.ganyaozi.dicegirl.server.netty;
 
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;

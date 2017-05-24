@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import proto.BaseMessage;
-import tech.ganyaozi.dicegirl.server.IMChannelHandler;
+import tech.ganyaozi.dicegirl.server.netty.IMChannelHandler;
 
 import java.util.Date;
 import java.util.UUID;

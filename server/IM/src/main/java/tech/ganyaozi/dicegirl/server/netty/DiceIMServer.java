@@ -1,4 +1,4 @@
-package tech.ganyaozi.dicegirl.server;
+package tech.ganyaozi.dicegirl.server.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -40,7 +40,6 @@ public class DiceIMServer {
             workerGroup.shutdownGracefully();
         }
     }
-
     private static boolean isLinux(){
         return System.getProperty("os.name").toLowerCase().contains("linux");
     }
