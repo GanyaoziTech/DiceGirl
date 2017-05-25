@@ -1,4 +1,4 @@
-package tech.ganyaozi.dicegirl.http;
+package tech.ganyaozi.dicegirl.netty.http;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;

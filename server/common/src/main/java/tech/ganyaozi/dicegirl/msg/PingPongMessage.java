@@ -1,9 +1,7 @@
 package tech.ganyaozi.dicegirl.msg;
 
 import com.google.protobuf.ByteString;
-import proto.BaseMessage;
-
-import java.util.Date;
+import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
 public class PingPongMessage {
 
@@ -12,10 +10,19 @@ public class PingPongMessage {
 
     public static BaseMessage.baseMessage getPingInstance(String userId) {
         return BaseMessage.baseMessage.newBuilder()
-                .setCmd(Command.Ping.getValue())
-                .setTimeStamp(new Date().getTime())
+                .setCmd(BaseMessage.Commands.IM_PING_PONG)
                 .setContent(ByteString.copyFrom(new byte[0]))
-                .setUserID(userId)
+                .setSrcID(userId)
+                .setAck(false)
+                .build();
+    }
+
+    public static BaseMessage.baseMessage getPongInstance(String userId) {
+        return BaseMessage.baseMessage.newBuilder()
+                .setCmd(BaseMessage.Commands.IM_PING_PONG)
+                .setContent(ByteString.copyFrom(new byte[0]))
+                .setDstID(userId)
+                .setAck(true)
                 .build();
     }
 

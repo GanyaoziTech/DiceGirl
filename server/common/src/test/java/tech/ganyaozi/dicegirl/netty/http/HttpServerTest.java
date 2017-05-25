@@ -1,4 +1,4 @@
-package tech.ganyaozi.dicegirl.http;
+package tech.ganyaozi.dicegirl.netty.http;
 
 import org.junit.After;
 import org.junit.Before;
