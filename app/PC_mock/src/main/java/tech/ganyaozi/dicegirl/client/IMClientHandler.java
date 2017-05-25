@@ -1,29 +1,27 @@
 package tech.ganyaozi.dicegirl.client;
 
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.AttributeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import proto.BaseMessage;
 import tech.ganyaozi.dicegirl.msg.Command;
 import tech.ganyaozi.dicegirl.msg.PingPongMessage;
-import proto.BaseMessage;
 
-public class IMClientHandler extends ChannelHandlerAdapter {
+public class IMClientHandler extends SimpleChannelInboundHandler<BaseMessage.baseMessage> {
 
     private static final Logger logger = LoggerFactory.getLogger(IMClientHandler.class);
 
     private static final AttributeKey<String> key = AttributeKey.valueOf("uuid");
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-            throws Exception {
-        BaseMessage.baseMessage req = (BaseMessage.baseMessage) msg;
+    protected void channelRead0(ChannelHandlerContext ctx, BaseMessage.baseMessage req) throws Exception {
         logger.info("Service accept client subscribe req:[" + req.toString() + "]");
         // 设置本次连接的唯一ID
         if (req.getCmd() == Command.Client_Init.getValue()){
-            ctx.attr(key).set(req.getUserID());
+            ctx.channel().attr(key).set(req.getUserID());
         }
     }
 

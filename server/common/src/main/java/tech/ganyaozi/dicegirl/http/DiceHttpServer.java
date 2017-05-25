@@ -36,7 +36,7 @@ public class DiceHttpServer {
     }
 
     public void stopServer() throws InterruptedException {
-            future.channel().close().sync();
+        future.channel().close();
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
     }

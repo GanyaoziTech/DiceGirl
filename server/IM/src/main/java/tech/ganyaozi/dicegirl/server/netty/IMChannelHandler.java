@@ -48,4 +48,9 @@ public class IMChannelHandler extends SimpleChannelInboundHandler<BaseMessage.ba
         }
         super.userEventTriggered(ctx, evt);
     }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, BaseMessage.baseMessage msg) throws Exception {
+
+    }
 }
