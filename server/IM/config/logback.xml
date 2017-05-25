@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-
+<!--每隔60秒扫描一次日志配置-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <property name="LOG_HOME" value="./log" />
     <!-- 控制台输出 -->
@@ -47,7 +47,7 @@
     <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />  -->
 
     <!-- 项目整体的日志输出级别 -->
-    <root level="DEBUG">   <!-- 此时debug级别的信息会被过滤 -->
+    <root level="INFO">   <!-- 此时debug级别的信息会被过滤 -->
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>
