@@ -14,15 +14,17 @@ message baseMessage {
     bytes   content = 6;
 }
 
-enum{
-    IM_CREATE_ROOM_REQ=0,
-    IM_CREATE_ROOM_RES,
-    IM_ENTER_ROOM_REQ,
-    IM_ENTER_ROOM_RES,
-    IM_EXIT_ROOM_REQ,
-    IM_EXIT_ROOM_RES,
-    IM_UPDATE_ROOM_INFO_REQ,
-    IM_UPDATE_ROOM_INFO_RES,
-    IM_MODIFY_ROOM_INFO_REQ,
-    IM_MODIFY_ROOM_INFO_RES
+enum Commands {
+    IM_CREATE_ROOM_REQ      = 0;
+    IM_CREATE_ROOM_RES      = 1;
+    IM_ENTER_ROOM_REQ       = 2;
+    IM_ENTER_ROOM_RES       = 3;
+    IM_EXIT_ROOM_REQ        = 4;
+    IM_EXIT_ROOM_RES        = 5;
+    IM_UPDATE_ROOM_INFO_REQ = 6;
+    IM_UPDATE_ROOM_INFO_RES = 7;
+    IM_MODIFY_ROOM_INFO_REQ = 8;
+    IM_MODIFY_ROOM_INFO_RES = 9;
 }
+
+
