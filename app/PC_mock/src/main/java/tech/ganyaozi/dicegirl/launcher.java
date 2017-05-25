@@ -4,12 +4,14 @@ import com.google.protobuf.ByteString;
 import org.apache.commons.lang3.StringUtils;
 import tech.ganyaozi.dicegirl.client.DiceIMClient;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
+import tech.ganyaozi.dicegirl.utils.ClientReconnectTask;
 import tech.ganyaozi.dicegirl.utils.ConsoleTool;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class launcher {
@@ -23,7 +25,9 @@ public class launcher {
         serverList.forEach(inetSocketAddress -> strs.add(inetSocketAddress.toString()));
         int index = ConsoleTool.showInConsole(strs);
         DiceIMClient client = new DiceIMClient();
-        Executors.newSingleThreadExecutor().submit(() -> client.connect(serverList.get(index)));
+        ExecutorService excutor = Executors.newSingleThreadExecutor();
+        excutor.submit(new ClientReconnectTask(client, serverList.get(index)));
+        excutor.submit(() -> client.connect(serverList.get(index)));
 
         while (true) {
             System.out.println("Please input you message >> ");

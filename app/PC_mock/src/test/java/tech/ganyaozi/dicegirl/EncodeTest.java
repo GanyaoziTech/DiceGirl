@@ -37,7 +37,7 @@ public class EncodeTest {
     @Ignore
     public void protobufMessageDecodeTest() {
         BaseMessage.baseMessage message = BaseMessage.baseMessage.newBuilder()
-                .setCmd(BaseMessage.Commands.IM_CREATE_ROOM_REQ.getNumber())
+                .setCmd(BaseMessage.Commands.IM_CREATE_ROOM_REQ)
                 .setAck(false)
                 .setDstID("-1")
                 .setSrcID(UUID.randomUUID().toString())
