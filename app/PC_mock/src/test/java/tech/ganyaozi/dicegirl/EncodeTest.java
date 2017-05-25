@@ -12,9 +12,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import proto.BaseMessage;
+import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
-import java.util.Date;
 import java.util.UUID;
 
 import static org.junit.Assert.assertTrue;
@@ -38,10 +37,11 @@ public class EncodeTest {
     @Ignore
     public void protobufMessageDecodeTest() {
         BaseMessage.baseMessage message = BaseMessage.baseMessage.newBuilder()
-                .setCmd(1)
-                .setUserID(UUID.randomUUID().toString())
-                .setTimeStamp(new Date().getTime())
-                .setContent(ByteString.copyFrom("Hello world".getBytes()))
+                .setCmd(BaseMessage.Commands.IM_CREATE_ROOM_REQ.getNumber())
+                .setAck(false)
+                .setDstID("-1")
+                .setSrcID(UUID.randomUUID().toString())
+                .setContent(ByteString.copyFrom(new byte[0]))
                 .build();
 
         // write message

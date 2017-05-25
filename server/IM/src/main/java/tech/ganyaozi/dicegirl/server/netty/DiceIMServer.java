@@ -1,5 +1,6 @@
 package tech.ganyaozi.dicegirl.server.netty;
 
+import akka.actor.ActorRef;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -17,7 +18,7 @@ public class DiceIMServer {
     private static EventLoopGroup bossGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
     private static EventLoopGroup workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);
 
-    public static void init(int port) {
+    public static void init(int port, ActorRef bussinessCenter) {
         ServerBootstrap bootstrap = new ServerBootstrap();
 
         if (isLinux()){
@@ -26,10 +27,9 @@ public class DiceIMServer {
             bootstrap.channel(NioServerSocketChannel.class);
         }
         bootstrap.group(bossGroup, workerGroup)
-                .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.SO_REUSEADDR, true)
                 .option(ChannelOption.SO_BACKLOG, 100)
-                .childHandler(new IMChannelInitializer());
+                .childHandler(new IMChannelInitializer(bussinessCenter));
         try {
             ChannelFuture future = bootstrap.bind(port).sync();
             future.channel().closeFuture().sync();

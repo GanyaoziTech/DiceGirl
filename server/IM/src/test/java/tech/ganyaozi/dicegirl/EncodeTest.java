@@ -10,10 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import proto.BaseMessage;
-import tech.ganyaozi.dicegirl.server.netty.IMChannelHandler;
+import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
-import java.util.Date;
 import java.util.UUID;
 
 import static org.junit.Assert.assertTrue;
@@ -23,20 +21,21 @@ public class EncodeTest {
     private EmbeddedChannel channel;
     private ChannelHandler decoder = new ProtobufDecoder(BaseMessage.baseMessage.getDefaultInstance());
     private ChannelHandler encoder = new ProtobufEncoder();
-    private ChannelHandler iMHandler = new IMChannelHandler();
+//    private ChannelHandler iMHandler = new IMServerChannelHandler();
 
     @Before
     public void before() {
-        channel = new EmbeddedChannel(decoder, encoder, iMHandler);
+//        channel = new EmbeddedChannel(decoder, encoder, iMHandler);
     }
 
     @Test
     public void protobufMessageDecodeTest() {
         BaseMessage.baseMessage message = BaseMessage.baseMessage.newBuilder()
-                .setCmd(1)
-                .setUserID(UUID.randomUUID().toString())
-                .setTimeStamp(new Date().getTime())
-                .setContent(ByteString.copyFrom("hello world".getBytes()))
+                .setCmd(BaseMessage.Commands.IM_CREATE_ROOM_REQ)
+                .setAck(false)
+                .setDstID("-1")
+                .setSrcID(UUID.randomUUID().toString())
+                .setContent(ByteString.copyFrom(new byte[0]))
                 .build();
 
         // write message

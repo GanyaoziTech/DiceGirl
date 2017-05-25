@@ -7,7 +7,8 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.timeout.IdleStateHandler;
-import proto.BaseMessage;
+import tech.ganyaozi.dicegirl.netty.ClientHeartBeatHandler;
+import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
 public class IMChannelInitializer extends ChannelInitializer<NioSocketChannel> {
 
@@ -22,6 +23,7 @@ public class IMChannelInitializer extends ChannelInitializer<NioSocketChannel> {
                 .addLast(new ProtobufVarint32LengthFieldPrepender())
                 .addLast(new ProtobufEncoder())
                 .addLast(new IdleStateHandler(READ_IDLE_TIME_OUT,WRITE_IDLE_TIME_OUT,ALL_IDLE_TIME_OUT))
+                .addLast(new ClientHeartBeatHandler())
                 .addLast(new IMClientHandler());
     }
 }
