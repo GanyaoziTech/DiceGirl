@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 public class LaunchClient {
 
@@ -28,7 +27,7 @@ public class LaunchClient {
 
     private static final String SERVER_LIST_CONFIG_PATH = "server_list.json";
     private static final Gson gson = new Gson();
-    private static ArrayList<InetSocketAddress> serverList = new ArrayList<>();
+    private static ArrayList<ServerNode> serverList = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException, IOException {
         initServerList();
@@ -36,8 +35,8 @@ public class LaunchClient {
         serverList.forEach(inetSocketAddress -> strs.add(inetSocketAddress.toString()));
         int index = ConsoleTool.showInConsole(strs);
         ExecutorService service = Executors.newSingleThreadExecutor();
-        service.submit(new ClientReconnectTask(serverList.get(index)));
-        DiceIMClient.startServer(serverList.get(index));
+        service.submit(new ClientReconnectTask(serverList.get(index).convert()));
+        DiceIMClient.startServer(serverList.get(index).convert());
 
         while (true) {
             System.out.println("Please input you message >> ");
@@ -66,7 +65,7 @@ public class LaunchClient {
         List<ServerNode> list = gson.fromJson(new FileReader(SERVER_LIST_CONFIG_PATH),
                 new TypeToken<List<ServerNode>>() {
                 }.getType());
-        serverList.addAll(list.stream().map(ServerNode::convert).collect(Collectors.toList()));
+        serverList.addAll(list);
     }
 
     private class ServerNode {
@@ -78,6 +77,11 @@ public class LaunchClient {
             this.name = name;
             this.host = host;
             this.port = port;
+        }
+
+        @Override
+        public String toString() {
+            return "name : " + name;
         }
 
         InetSocketAddress convert() {

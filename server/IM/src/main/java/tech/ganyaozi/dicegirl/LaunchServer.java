@@ -11,15 +11,15 @@ import static tech.ganyaozi.dicegirl.utils.LogbackConfiguration.loadLogbackConfi
 
 public class LaunchServer {
 
-    public static final String LOGBACK_CONFIG_PATH = "config/logback.xml";
+    private static final String LOGBACK_CONFIG_PATH = "config/logback.xml";
+
+    private static final int DEFAULT_PORT = 55555;
 
     public static void main(String[] args) throws IOException, JoranException {
-
         ActorRef bussinessCenter = LocalAkkaSystem.boost();
-
         loadLogbackConfig(LOGBACK_CONFIG_PATH);
+        DiceIMServer.init(DEFAULT_PORT, bussinessCenter);
 
-        DiceIMServer.init(44444, bussinessCenter);
     }
 
 }

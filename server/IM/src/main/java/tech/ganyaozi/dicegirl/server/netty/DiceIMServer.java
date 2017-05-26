@@ -20,7 +20,6 @@ public class DiceIMServer {
 
     public static void init(int port, ActorRef bussinessCenter) {
         ServerBootstrap bootstrap = new ServerBootstrap();
-
         if (isLinux()){
             bootstrap.channel(EpollServerSocketChannel.class);
         }else {

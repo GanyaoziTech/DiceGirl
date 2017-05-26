@@ -47,7 +47,7 @@
     <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />  -->
 
     <!-- 项目整体的日志输出级别 -->
-    <root level="INFO">   <!-- 此时debug级别的信息会被过滤 -->
+    <root level="debug">   <!-- 此时debug级别的信息会被过滤 -->
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>

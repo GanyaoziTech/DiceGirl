@@ -27,7 +27,7 @@ public class ClientReconnectTask implements Runnable {
             if (DiceIMClient.channel == null) {
                 continue;
             }
-            logger.debug("Check connection validation : {} ", DiceIMClient.channel.isActive());
+            logger.debug("Check connection validation : {}  ...", DiceIMClient.channel.isActive() ? " connected " : " disconnected ");
             if (!DiceIMClient.channel.isActive()) {
                 logger.error("Reconnecting to server : {} ...... ", address);
                 DiceIMClient.startServer(address);
