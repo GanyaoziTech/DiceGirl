@@ -6,7 +6,9 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class DiceIMServer {
 
@@ -19,12 +21,14 @@ public class DiceIMServer {
 
     public static void init(int port, ActorRef bussinessCenter) {
         ServerBootstrap bootstrap = new ServerBootstrap();
-        if (isLinux()) {
+        if (!isLinux()) {
             bossGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
             workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);
+            bootstrap.channel(NioServerSocketChannel.class);
         } else {
             bossGroup = new EpollEventLoopGroup(BOSS_GROUP_SIZE);
             workerGroup = new EpollEventLoopGroup(WORKER_GROUP_SIZE);
+            bootstrap.channel(EpollServerSocketChannel.class);
         }
         bootstrap.group(bossGroup, workerGroup)
                 .option(ChannelOption.SO_REUSEADDR, true)
