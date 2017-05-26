@@ -67,4 +67,10 @@ public class ServerHeartBeatHandler extends SimpleChannelInboundHandler<BaseMess
         }
         super.exceptionCaught(ctx, cause);
     }
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        logger.info("Channel unregistered ! {} ", ctx.channel().attr(key).get());
+        super.channelUnregistered(ctx);
+    }
 }

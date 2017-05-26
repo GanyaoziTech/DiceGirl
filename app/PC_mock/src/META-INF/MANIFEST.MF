@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Class-Path: gson-2.8.0.jar netty-all-4.1.11.Final.jar commons-configur
+ ation2-2.1.1.jar httpcore-4.4.6.jar commons-lang3-3.5.jar commons-mat
+ h3-3.5.jar protobuf-java-3.3.0.jar logback-core-1.2.3.jar commons-log
+ ging-1.2.jar logback-classic-1.2.3.jar httpclient-4.5.3.jar commons-c
+ odec-1.9.jar slf4j-api-1.7.25.jar
+Main-Class: tech.ganyaozi.dicegirl.LaunchClient
+

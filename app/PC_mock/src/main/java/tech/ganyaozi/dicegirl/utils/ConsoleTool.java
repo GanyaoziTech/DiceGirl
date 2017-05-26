@@ -10,11 +10,9 @@ import java.util.ArrayList;
 
 public class ConsoleTool {
 
-    private static final Logger logger = LoggerFactory.getLogger(ConsoleTool.class);
-
     public static final boolean ADD_SERIAL_NUMBER = true;
     public static final boolean NO_SERIAL_NUMBER = false;
-
+    private static final Logger logger = LoggerFactory.getLogger(ConsoleTool.class);
     private static String banner = "================================================================";
     private static String border = "|";
     private static String seperator = " : ";
@@ -29,36 +27,37 @@ public class ConsoleTool {
      * @return index the number scanned in, or -1 if input is invalid
      */
     public static int showInConsole(ArrayList<?> strs, boolean addSerialNum) {
-        try {
-            showTables(strs, addSerialNum);
-
-            String order = bufferedReader.readLine();
-            if (order == null) {
-                return -1;
-            }
-            if (order.matches("[0-9]+")) {
-                int orderInt = Integer.valueOf(order);
-                if (orderInt < strs.size() && orderInt > -1) {
-                    logger.info("\n\n");
-                    return orderInt;
-                } else {
-                    logger.error("Invalid number ! please input the number before selection \n");
-                    return -1;
+        int result = -1;
+        do {
+            try {
+                showTables(strs, addSerialNum);
+                String order = bufferedReader.readLine();
+                if (order == null) {
+                    continue;
                 }
-            } else if (order.equals("exit") || order.equals("quit")) {
-                return -1;
-            } else {
-                logger.error("Invalid number ! please input the number before selection \n");
-                return -1;
+                if (order.matches("[0-9]+")) {
+                    int orderInt = Integer.valueOf(order);
+                    if (orderInt < strs.size() && orderInt > -1) {
+                        logger.info("\n\n");
+                        result = orderInt;
+                    } else {
+                        logger.error("Invalid number ! please input the number before selection \n");
+                    }
+                } else switch (order) {
+                    case "exit":
+                    case "quit":
+                        break;
+                    default:
+                        logger.error("Invalid number ! please input the number before selection \n");
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                logger.error("Number is too large");
+            } catch (IllegalArgumentException | IOException e) {
+                e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            logger.error("Number is too large");
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return -1;
+        } while (result == -1);
+        return result;
     }
 
     public static int showInConsole(ArrayList<?> strs) {

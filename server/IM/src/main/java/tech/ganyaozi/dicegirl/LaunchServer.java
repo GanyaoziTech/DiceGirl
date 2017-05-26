@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static tech.ganyaozi.dicegirl.utils.LogbackConfiguration.loadLogbackConfig;
 
-public class launcher {
+public class LaunchServer {
 
     public static final String LOGBACK_CONFIG_PATH = "config/logback.xml";
 

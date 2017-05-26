@@ -1,0 +1,12 @@
+[
+  {
+    "name": "本地测试专用",
+    "host": "localhost",
+    "port": 44444
+  },
+  {
+    "name": "干腰子科技内部测试",
+    "host": "ganyaozi.tech",
+    "port": 44444
+  }
+]

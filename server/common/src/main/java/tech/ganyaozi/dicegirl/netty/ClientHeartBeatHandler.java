@@ -28,6 +28,7 @@ public class ClientHeartBeatHandler extends SimpleChannelInboundHandler<BaseMess
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        logger.info("Connection to server ACTIVE !! ");
         super.channelActive(ctx);
     }
 

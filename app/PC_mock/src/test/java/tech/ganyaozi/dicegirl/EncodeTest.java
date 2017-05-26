@@ -18,6 +18,7 @@ import java.util.UUID;
 
 import static org.junit.Assert.assertTrue;
 
+
 public class EncodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(EncodeTest.class);
