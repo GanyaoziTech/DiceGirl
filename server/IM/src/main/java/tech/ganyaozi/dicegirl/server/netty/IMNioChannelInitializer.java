@@ -11,14 +11,14 @@ import io.netty.handler.timeout.IdleStateHandler;
 import tech.ganyaozi.dicegirl.netty.ServerHeartBeatHandler;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
-public class IMChannelInitializer extends ChannelInitializer<NioSocketChannel> {
+public class IMNioChannelInitializer extends ChannelInitializer<NioSocketChannel> {
 
     private static int WRITE_IDLE_TIME_OUT = 0;
     private static int READ_IDLE_TIME_OUT = 20;
     private static int ALL_IDLE_TIME_OUT = 0;
     private ActorRef bussinessCenter;
 
-    public IMChannelInitializer(ActorRef bussinessCenter) {
+    public IMNioChannelInitializer(ActorRef bussinessCenter) {
         this.bussinessCenter = bussinessCenter;
     }
 

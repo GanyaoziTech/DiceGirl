@@ -24,16 +24,18 @@ public class DiceIMServer {
         if (!isLinux()) {
             bossGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
             workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);
-            bootstrap.channel(NioServerSocketChannel.class);
+            bootstrap.channel(NioServerSocketChannel.class)
+                    .childHandler(new IMNioChannelInitializer(bussinessCenter));
         } else {
             bossGroup = new EpollEventLoopGroup(BOSS_GROUP_SIZE);
             workerGroup = new EpollEventLoopGroup(WORKER_GROUP_SIZE);
-            bootstrap.channel(EpollServerSocketChannel.class);
+            bootstrap.channel(EpollServerSocketChannel.class)
+                    .childHandler(new IMEpollChannelInitializer(bussinessCenter));
         }
         bootstrap.group(bossGroup, workerGroup)
                 .option(ChannelOption.SO_REUSEADDR, true)
-                .option(ChannelOption.SO_BACKLOG, 100)
-                .childHandler(new IMChannelInitializer(bussinessCenter));
+                .option(ChannelOption.SO_BACKLOG, 100);
+
         try {
             ChannelFuture future = bootstrap.bind(port).sync();
             future.channel().closeFuture().sync();
@@ -44,7 +46,8 @@ public class DiceIMServer {
             workerGroup.shutdownGracefully();
         }
     }
-    private static boolean isLinux(){
+
+    private static boolean isLinux() {
         return System.getProperty("os.name").toLowerCase().contains("linux");
     }
 }
