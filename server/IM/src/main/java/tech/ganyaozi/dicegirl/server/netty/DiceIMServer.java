@@ -24,17 +24,16 @@ public class DiceIMServer {
         if (!isLinux()) {
             bossGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
             workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);
-            bootstrap.channel(NioServerSocketChannel.class)
-                    .childHandler(new IMNioChannelInitializer(bussinessCenter));
+            bootstrap.channel(NioServerSocketChannel.class);
         } else {
             bossGroup = new EpollEventLoopGroup(BOSS_GROUP_SIZE);
             workerGroup = new EpollEventLoopGroup(WORKER_GROUP_SIZE);
-            bootstrap.channel(EpollServerSocketChannel.class)
-                    .childHandler(new IMEpollChannelInitializer(bussinessCenter));
+            bootstrap.channel(EpollServerSocketChannel.class);
         }
         bootstrap.group(bossGroup, workerGroup)
                 .option(ChannelOption.SO_REUSEADDR, true)
-                .option(ChannelOption.SO_BACKLOG, 100);
+                .option(ChannelOption.SO_BACKLOG, 100)
+                .childHandler(new IMChannelInitializer(bussinessCenter));
 
         try {
             ChannelFuture future = bootstrap.bind(port).sync();
