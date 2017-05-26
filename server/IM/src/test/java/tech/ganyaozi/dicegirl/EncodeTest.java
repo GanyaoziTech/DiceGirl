@@ -7,6 +7,7 @@ import io.netty.channel.embedded.EmbeddedChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,7 @@ public class EncodeTest {
 //        channel = new EmbeddedChannel(decoder, encoder, iMHandler);
     }
 
+    @Ignore
     @Test
     public void protobufMessageDecodeTest() {
         BaseMessage.baseMessage message = BaseMessage.baseMessage.newBuilder()
