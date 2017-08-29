@@ -12,17 +12,16 @@ import tech.ganyaozi.dicegirl.proto.BaseMessage;
 
 public class IMChannelInitializer extends ChannelInitializer<NioSocketChannel> {
 
-    private static int WRITE_IDLE_TIME_OUT = 10;
-    private static int READ_IDLE_TIME_OUT = 0;
-    private static int ALL_IDLE_TIME_OUT = 0;
-
     protected void initChannel(NioSocketChannel clientChannel) throws Exception {
+        int ALL_IDLE_TIME_OUT = 0;
+        int READ_IDLE_TIME_OUT = 0;
+        int WRITE_IDLE_TIME_OUT = 10;
         clientChannel.pipeline()
                 .addLast(new ProtobufVarint32FrameDecoder())
                 .addLast(new ProtobufDecoder(BaseMessage.baseMessage.getDefaultInstance()))
                 .addLast(new ProtobufVarint32LengthFieldPrepender())
                 .addLast(new ProtobufEncoder())
-                .addLast(new IdleStateHandler(READ_IDLE_TIME_OUT,WRITE_IDLE_TIME_OUT,ALL_IDLE_TIME_OUT))
+                .addLast(new IdleStateHandler(READ_IDLE_TIME_OUT, WRITE_IDLE_TIME_OUT, ALL_IDLE_TIME_OUT))
                 .addLast(new ClientHeartBeatHandler())
                 .addLast(new IMClientHandler());
     }

@@ -34,17 +34,11 @@
     </appender>
 
     <!-- 日志logger(包.类)的输出级别 -->
-    <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="DEBUG" >
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="INFO">
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </logger>
 
-    <!-- 为 Hibernate sql 定制 -->
-    <!-- <logger name="org.hibernate.type.descriptor.sql.BasicBinder"  level="TRACE" />
-    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor"  level="DEBUG" />
-    <logger name="org.hibernate.SQL" level="DEBUG" />
-    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
-    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />  -->
 
     <!-- 项目整体的日志输出级别 -->
     <root level="INFO">   <!-- 此时debug级别的信息会被过滤 -->
@@ -52,18 +46,5 @@
         <appender-ref ref="file" />
     </root>
 
-    <!--日志异步到数据库 -->
-    <!-- <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
-        日志异步到数据库
-        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
-            连接池
-            <dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
-              <driverClass>com.mysql.jdbc.Driver</driverClass>
-              <url>jdbc:mysql://127.0.0.1:3306/databaseName</url>
-              <user>root</user>
-              <password>root</password>
-            </dataSource>
-        </connectionSource>
-    </appender> -->
 
 </configuration>

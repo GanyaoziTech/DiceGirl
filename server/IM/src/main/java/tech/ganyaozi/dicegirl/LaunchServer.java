@@ -19,7 +19,5 @@ public class LaunchServer {
         ActorRef bussinessCenter = LocalAkkaSystem.boost();
         loadLogbackConfig(LOGBACK_CONFIG_PATH);
         DiceIMServer.init(DEFAULT_PORT, bussinessCenter);
-
     }
-
 }

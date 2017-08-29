@@ -16,11 +16,10 @@ public class DiceIMServer {
 
     private static final int WORKER_GROUP_SIZE = 10;
 
-    private static EventLoopGroup bossGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
-    private static EventLoopGroup workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);
-
     public static void init(int port, ActorRef bussinessCenter) {
         ServerBootstrap bootstrap = new ServerBootstrap();
+        EventLoopGroup workerGroup;
+        EventLoopGroup bossGroup;
         if (!isLinux()) {
             bossGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
             workerGroup = new NioEventLoopGroup(WORKER_GROUP_SIZE);

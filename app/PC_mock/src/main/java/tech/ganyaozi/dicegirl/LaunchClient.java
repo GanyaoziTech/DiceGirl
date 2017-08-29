@@ -13,7 +13,6 @@ import tech.ganyaozi.dicegirl.utils.ConsoleTool;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +20,19 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static tech.ganyaozi.dicegirl.utils.LogbackConfiguration.loadLogbackConfig;
+
 public class LaunchClient {
 
     private static final Logger logger = LoggerFactory.getLogger(LaunchClient.class);
-
+    private static final String LOGBACK_CONFIG_PATH = "config/logback.xml";
     private static final String SERVER_LIST_CONFIG_PATH = "server_list.json";
     private static final Gson gson = new Gson();
     private static ArrayList<ServerNode> serverList = new ArrayList<>();
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+
+    public static void main(String[] args) throws Exception {
+        loadLogbackConfig(LOGBACK_CONFIG_PATH);
         initServerList();
         ArrayList<String> strs = new ArrayList<>();
         serverList.forEach(inetSocketAddress -> strs.add(inetSocketAddress.toString()));
@@ -39,7 +42,7 @@ public class LaunchClient {
         DiceIMClient.startServer(serverList.get(index).convert());
 
         while (true) {
-            System.out.println("Please input you message >> ");
+            System.out.println("Please input you message ( Enter 'q' to exit )>> ");
             String cmd = ConsoleTool.readLine();
             if (!StringUtils.equals(cmd, "q")) {
                 if (DiceIMClient.channel == null || !DiceIMClient.channel.isActive()) {
