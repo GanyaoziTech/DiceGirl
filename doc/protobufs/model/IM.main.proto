@@ -15,18 +15,24 @@ message baseMessage {
 }
 
 enum Commands {
-    IM_PING_PONG            = 0;
-    IM_SECURE_KEY           = 1;
-    IM_CREATE_ROOM_REQ      = 2;
-    IM_CREATE_ROOM_RES      = 3;
-    IM_ENTER_ROOM_REQ       = 4;
-    IM_ENTER_ROOM_RES       = 5;
-    IM_EXIT_ROOM_REQ        = 6;
-    IM_EXIT_ROOM_RES        = 7;
-    IM_UPDATE_ROOM_INFO_REQ = 8;
-    IM_UPDATE_ROOM_INFO_RES = 9;
-    IM_MODIFY_ROOM_INFO_REQ = 10;
-    IM_MODIFY_ROOM_INFO_RES = 11;
+    IM_DEFUALT              = 0;
+
+    IM_PING_PONG            = 16;
+    IM_SECURE_KEY           = 32;
+	
+	// room 
+    IM_CREATE_ROOM_REQ      = 48;
+    IM_CREATE_ROOM_RES      = 49;
+	
+    IM_ENTER_ROOM_REQ       = 52;
+    IM_ENTER_ROOM_RES       = 53;
+	
+    IM_EXIT_ROOM_REQ        = 56;
+    IM_EXIT_ROOM_RES        = 57;
+	
+    IM_UPDATE_ROOM_INFO_REQ = 60;
+    IM_UPDATE_ROOM_INFO_RES = 61;
+	
 }
 
 

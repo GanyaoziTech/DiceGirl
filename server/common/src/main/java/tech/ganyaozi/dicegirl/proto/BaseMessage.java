@@ -4,53 +4,7 @@
 package tech.ganyaozi.dicegirl.proto;
 
 public final class BaseMessage {
-  private static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
-  private static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.FileDescriptor
-          descriptor;
-
-  static {
-    String[] descriptorData = {
-            "\n\rIM.main.proto\022\034tech.ganyaozi.dicegirl." +
-                    "proto\"\213\001\n\013baseMessage\0223\n\003cmd\030\001 \001(\0162&.tec" +
-                    "h.ganyaozi.dicegirl.proto.Commands\022\013\n\003se" +
-                    "q\030\002 \001(\006\022\r\n\005srcID\030\003 \001(\t\022\r\n\005dstID\030\004 \001(\t\022\013\n" +
-                    "\003ack\030\005 \001(\010\022\017\n\007content\030\006 \001(\014*\255\002\n\010Commands" +
-                    "\022\020\n\014IM_PING_PONG\020\000\022\021\n\rIM_SECURE_KEY\020\001\022\026\n" +
-                    "\022IM_CREATE_ROOM_REQ\020\002\022\026\n\022IM_CREATE_ROOM_" +
-                    "RES\020\003\022\025\n\021IM_ENTER_ROOM_REQ\020\004\022\025\n\021IM_ENTER" +
-                    "_ROOM_RES\020\005\022\024\n\020IM_EXIT_ROOM_REQ\020\006\022\024\n\020IM_" +
-                    "EXIT_ROOM_RES\020\007\022\033\n\027IM_UPDATE_ROOM_INFO_R",
-            "EQ\020\010\022\033\n\027IM_UPDATE_ROOM_INFO_RES\020\t\022\033\n\027IM_" +
-                    "MODIFY_ROOM_INFO_REQ\020\n\022\033\n\027IM_MODIFY_ROOM" +
-                    "_INFO_RES\020\013B+\n\034tech.ganyaozi.dicegirl.pr" +
-                    "otoB\013BaseMessageb\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-            new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
-              public com.google.protobuf.ExtensionRegistry assignDescriptors(
-                      com.google.protobuf.Descriptors.FileDescriptor root) {
-                descriptor = root;
-                return null;
-              }
-            };
-    com.google.protobuf.Descriptors.FileDescriptor
-            .internalBuildGeneratedFileFrom(descriptorData,
-                    new com.google.protobuf.Descriptors.FileDescriptor[]{
-                    }, assigner);
-    internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor =
-            getDescriptor().getMessageTypes().get(0);
-    internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor,
-            new String[]{"Cmd", "Seq", "SrcID", "DstID", "Ack", "Content",});
-  }
-
   private BaseMessage() {}
-
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -61,126 +15,163 @@ public final class BaseMessage {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
-    return descriptor;
-  }
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable;
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        String[] descriptorData = {
+                "\n\rIM.main.proto\022\034tech.ganyaozi.dicegirl." +
+                        "proto\"\213\001\n\013baseMessage\0223\n\003cmd\030\001 \001(\0162&.tec" +
+                        "h.ganyaozi.dicegirl.proto.Commands\022\013\n\003se" +
+                        "q\030\002 \001(\006\022\r\n\005srcID\030\003 \001(\t\022\r\n\005dstID\030\004 \001(\t\022\013\n" +
+                        "\003ack\030\005 \001(\010\022\017\n\007content\030\006 \001(\014*\203\002\n\010Commands" +
+                        "\022\016\n\nIM_DEFUALT\020\000\022\020\n\014IM_PING_PONG\020\020\022\021\n\rIM" +
+                        "_SECURE_KEY\020 \022\026\n\022IM_CREATE_ROOM_REQ\0200\022\026\n" +
+                        "\022IM_CREATE_ROOM_RES\0201\022\025\n\021IM_ENTER_ROOM_R" +
+                        "EQ\0204\022\025\n\021IM_ENTER_ROOM_RES\0205\022\024\n\020IM_EXIT_R" +
+                        "OOM_REQ\0208\022\024\n\020IM_EXIT_ROOM_RES\0209\022\033\n\027IM_UP",
+                "DATE_ROOM_INFO_REQ\020<\022\033\n\027IM_UPDATE_ROOM_I" +
+                        "NFO_RES\020=B+\n\034tech.ganyaozi.dicegirl.prot" +
+                        "oB\013BaseMessageb\006proto3"
+        };
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                        }, assigner);
+        internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor,
+                new String[]{"Cmd", "Seq", "SrcID", "DstID", "Ack", "Content",});
+    }
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
 
   /**
    * Protobuf enum {@code tech.ganyaozi.dicegirl.proto.Commands}
    */
   public enum Commands
-          implements com.google.protobuf.ProtocolMessageEnum {
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>IM_PING_PONG = 0;</code>
+     * <code>IM_DEFUALT = 0;</code>
      */
-    IM_PING_PONG(0),
+    IM_DEFUALT(0),
     /**
-     * <code>IM_SECURE_KEY = 1;</code>
+     * <code>IM_PING_PONG = 16;</code>
      */
-    IM_SECURE_KEY(1),
+    IM_PING_PONG(16),
     /**
-     * <code>IM_CREATE_ROOM_REQ = 2;</code>
+     * <code>IM_SECURE_KEY = 32;</code>
      */
-    IM_CREATE_ROOM_REQ(2),
+    IM_SECURE_KEY(32),
     /**
-     * <code>IM_CREATE_ROOM_RES = 3;</code>
+     * <pre>
+     * room
+     * </pre>
+     *
+     * <code>IM_CREATE_ROOM_REQ = 48;</code>
      */
-    IM_CREATE_ROOM_RES(3),
+    IM_CREATE_ROOM_REQ(48),
     /**
-     * <code>IM_ENTER_ROOM_REQ = 4;</code>
+     * <code>IM_CREATE_ROOM_RES = 49;</code>
      */
-    IM_ENTER_ROOM_REQ(4),
+    IM_CREATE_ROOM_RES(49),
     /**
-     * <code>IM_ENTER_ROOM_RES = 5;</code>
+     * <code>IM_ENTER_ROOM_REQ = 52;</code>
      */
-    IM_ENTER_ROOM_RES(5),
+    IM_ENTER_ROOM_REQ(52),
     /**
-     * <code>IM_EXIT_ROOM_REQ = 6;</code>
+     * <code>IM_ENTER_ROOM_RES = 53;</code>
      */
-    IM_EXIT_ROOM_REQ(6),
+    IM_ENTER_ROOM_RES(53),
     /**
-     * <code>IM_EXIT_ROOM_RES = 7;</code>
+     * <code>IM_EXIT_ROOM_REQ = 56;</code>
      */
-    IM_EXIT_ROOM_RES(7),
+    IM_EXIT_ROOM_REQ(56),
     /**
-     * <code>IM_UPDATE_ROOM_INFO_REQ = 8;</code>
+     * <code>IM_EXIT_ROOM_RES = 57;</code>
      */
-    IM_UPDATE_ROOM_INFO_REQ(8),
+    IM_EXIT_ROOM_RES(57),
     /**
-     * <code>IM_UPDATE_ROOM_INFO_RES = 9;</code>
+     * <code>IM_UPDATE_ROOM_INFO_REQ = 60;</code>
      */
-    IM_UPDATE_ROOM_INFO_RES(9),
+    IM_UPDATE_ROOM_INFO_REQ(60),
     /**
-     * <code>IM_MODIFY_ROOM_INFO_REQ = 10;</code>
+     * <code>IM_UPDATE_ROOM_INFO_RES = 61;</code>
      */
-    IM_MODIFY_ROOM_INFO_REQ(10),
-    /**
-     * <code>IM_MODIFY_ROOM_INFO_RES = 11;</code>
-     */
-    IM_MODIFY_ROOM_INFO_RES(11),
-    UNRECOGNIZED(-1),;
+    IM_UPDATE_ROOM_INFO_RES(61),
+    UNRECOGNIZED(-1),
+    ;
 
     /**
-     * <code>IM_PING_PONG = 0;</code>
+     * <code>IM_DEFUALT = 0;</code>
      */
-    public static final int IM_PING_PONG_VALUE = 0;
+    public static final int IM_DEFUALT_VALUE = 0;
     /**
-     * <code>IM_SECURE_KEY = 1;</code>
+     * <code>IM_PING_PONG = 16;</code>
      */
-    public static final int IM_SECURE_KEY_VALUE = 1;
+    public static final int IM_PING_PONG_VALUE = 16;
     /**
-     * <code>IM_CREATE_ROOM_REQ = 2;</code>
+     * <code>IM_SECURE_KEY = 32;</code>
      */
-    public static final int IM_CREATE_ROOM_REQ_VALUE = 2;
+    public static final int IM_SECURE_KEY_VALUE = 32;
     /**
-     * <code>IM_CREATE_ROOM_RES = 3;</code>
+     * <pre>
+     * room
+     * </pre>
+     *
+     * <code>IM_CREATE_ROOM_REQ = 48;</code>
      */
-    public static final int IM_CREATE_ROOM_RES_VALUE = 3;
+    public static final int IM_CREATE_ROOM_REQ_VALUE = 48;
     /**
-     * <code>IM_ENTER_ROOM_REQ = 4;</code>
+     * <code>IM_CREATE_ROOM_RES = 49;</code>
      */
-    public static final int IM_ENTER_ROOM_REQ_VALUE = 4;
+    public static final int IM_CREATE_ROOM_RES_VALUE = 49;
     /**
-     * <code>IM_ENTER_ROOM_RES = 5;</code>
+     * <code>IM_ENTER_ROOM_REQ = 52;</code>
      */
-    public static final int IM_ENTER_ROOM_RES_VALUE = 5;
+    public static final int IM_ENTER_ROOM_REQ_VALUE = 52;
     /**
-     * <code>IM_EXIT_ROOM_REQ = 6;</code>
+     * <code>IM_ENTER_ROOM_RES = 53;</code>
      */
-    public static final int IM_EXIT_ROOM_REQ_VALUE = 6;
+    public static final int IM_ENTER_ROOM_RES_VALUE = 53;
     /**
-     * <code>IM_EXIT_ROOM_RES = 7;</code>
+     * <code>IM_EXIT_ROOM_REQ = 56;</code>
      */
-    public static final int IM_EXIT_ROOM_RES_VALUE = 7;
+    public static final int IM_EXIT_ROOM_REQ_VALUE = 56;
     /**
-     * <code>IM_UPDATE_ROOM_INFO_REQ = 8;</code>
+     * <code>IM_EXIT_ROOM_RES = 57;</code>
      */
-    public static final int IM_UPDATE_ROOM_INFO_REQ_VALUE = 8;
+    public static final int IM_EXIT_ROOM_RES_VALUE = 57;
     /**
-     * <code>IM_UPDATE_ROOM_INFO_RES = 9;</code>
+     * <code>IM_UPDATE_ROOM_INFO_REQ = 60;</code>
      */
-    public static final int IM_UPDATE_ROOM_INFO_RES_VALUE = 9;
+    public static final int IM_UPDATE_ROOM_INFO_REQ_VALUE = 60;
     /**
-     * <code>IM_MODIFY_ROOM_INFO_REQ = 10;</code>
+     * <code>IM_UPDATE_ROOM_INFO_RES = 61;</code>
      */
-    public static final int IM_MODIFY_ROOM_INFO_REQ_VALUE = 10;
-    /**
-     * <code>IM_MODIFY_ROOM_INFO_RES = 11;</code>
-     */
-    public static final int IM_MODIFY_ROOM_INFO_RES_VALUE = 11;
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-            Commands> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Commands>() {
-              public Commands findValueByNumber(int number) {
-                return Commands.forNumber(number);
-              }
-            };
-    private static final Commands[] VALUES = values();
-    private final int value;
+    public static final int IM_UPDATE_ROOM_INFO_RES_VALUE = 61;
 
-    Commands(int value) {
-      this.value = value;
+
+      Commands(int value) {
+          this.value = value;
     }
 
     /**
@@ -193,50 +184,64 @@ public final class BaseMessage {
 
     public static Commands forNumber(int value) {
       switch (value) {
-        case 0:
-          return IM_PING_PONG;
-        case 1:
-          return IM_SECURE_KEY;
-        case 2:
-          return IM_CREATE_ROOM_REQ;
-        case 3:
-          return IM_CREATE_ROOM_RES;
-        case 4:
-          return IM_ENTER_ROOM_REQ;
-        case 5:
-          return IM_ENTER_ROOM_RES;
-        case 6:
-          return IM_EXIT_ROOM_REQ;
-        case 7:
-          return IM_EXIT_ROOM_RES;
-        case 8:
-          return IM_UPDATE_ROOM_INFO_REQ;
-        case 9:
-          return IM_UPDATE_ROOM_INFO_RES;
-        case 10:
-          return IM_MODIFY_ROOM_INFO_REQ;
-        case 11:
-          return IM_MODIFY_ROOM_INFO_RES;
-        default:
-          return null;
+          case 0:
+              return IM_DEFUALT;
+          case 16:
+              return IM_PING_PONG;
+          case 32:
+              return IM_SECURE_KEY;
+          case 48:
+              return IM_CREATE_ROOM_REQ;
+          case 49:
+              return IM_CREATE_ROOM_RES;
+          case 52:
+              return IM_ENTER_ROOM_REQ;
+          case 53:
+              return IM_ENTER_ROOM_RES;
+          case 56:
+              return IM_EXIT_ROOM_REQ;
+          case 57:
+              return IM_EXIT_ROOM_RES;
+          case 60:
+              return IM_UPDATE_ROOM_INFO_REQ;
+          case 61:
+              return IM_UPDATE_ROOM_INFO_RES;
+        default: return null;
       }
     }
 
     public static com.google.protobuf.Internal.EnumLiteMap<Commands>
-    internalGetValueMap() {
+        internalGetValueMap() {
       return internalValueMap;
     }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Commands> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Commands>() {
+            public Commands findValueByNumber(int number) {
+              return Commands.forNumber(number);
+            }
+          };
 
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptor() {
-      return BaseMessage.getDescriptor().getEnumTypes().get(0);
+        getDescriptor() {
+        return BaseMessage.getDescriptor().getEnumTypes().get(0);
     }
 
+    private static final Commands[] VALUES = values();
+
     public static Commands valueOf(
-            com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
-                "EnumValueDescriptor is not for this type.");
+          throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -244,36 +249,27 @@ public final class BaseMessage {
       return VALUES[desc.getIndex()];
     }
 
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
-                "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
+    private final int value;
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-    getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptorForType() {
-      return getDescriptor();
+      public final int getNumber() {
+          if (this == UNRECOGNIZED) {
+              throw new IllegalArgumentException(
+                      "Can't get the number of an unknown enum value.");
+          }
+          return value;
     }
 
     // @@protoc_insertion_point(enum_scope:tech.ganyaozi.dicegirl.proto.Commands)
   }
 
   public interface baseMessageOrBuilder extends
-          // @@protoc_insertion_point(interface_extends:tech.ganyaozi.dicegirl.proto.baseMessage)
-          com.google.protobuf.MessageOrBuilder {
+      // @@protoc_insertion_point(interface_extends:tech.ganyaozi.dicegirl.proto.baseMessage)
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
      */
     int getCmdValue();
-
     /**
      * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
      */
@@ -288,23 +284,21 @@ public final class BaseMessage {
      * <code>string srcID = 3;</code>
      */
     String getSrcID();
-
     /**
      * <code>string srcID = 3;</code>
      */
     com.google.protobuf.ByteString
-    getSrcIDBytes();
+        getSrcIDBytes();
 
     /**
      * <code>string dstID = 4;</code>
      */
     String getDstID();
-
     /**
      * <code>string dstID = 4;</code>
      */
     com.google.protobuf.ByteString
-    getDstIDBytes();
+        getDstIDBytes();
 
     /**
      * <code>bool ack = 5;</code>
@@ -320,41 +314,10 @@ public final class BaseMessage {
   /**
    * Protobuf type {@code tech.ganyaozi.dicegirl.proto.baseMessage}
    */
-  public static final class baseMessage extends
-          com.google.protobuf.GeneratedMessageV3 implements
-          // @@protoc_insertion_point(message_implements:tech.ganyaozi.dicegirl.proto.baseMessage)
-          baseMessageOrBuilder {
-    public static final int CMD_FIELD_NUMBER = 1;
-    public static final int SEQ_FIELD_NUMBER = 2;
-    public static final int SRCID_FIELD_NUMBER = 3;
-    public static final int DSTID_FIELD_NUMBER = 4;
-    public static final int ACK_FIELD_NUMBER = 5;
-    public static final int CONTENT_FIELD_NUMBER = 6;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:tech.ganyaozi.dicegirl.proto.baseMessage)
-    private static final baseMessage DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<baseMessage>
-            PARSER = new com.google.protobuf.AbstractParser<baseMessage>() {
-      public baseMessage parsePartialFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws com.google.protobuf.InvalidProtocolBufferException {
-        return new baseMessage(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new baseMessage();
-    }
-
-    private int cmd_;
-    private long seq_;
-    private volatile Object srcID_;
-    private volatile Object dstID_;
-    private boolean ack_;
-    private com.google.protobuf.ByteString content_;
-    private byte memoizedIsInitialized = -1;
-
+  public  static final class baseMessage extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:tech.ganyaozi.dicegirl.proto.baseMessage)
+      baseMessageOrBuilder {
     // Use baseMessage.newBuilder() to construct.
     private baseMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -367,6 +330,47 @@ public final class BaseMessage {
       ack_ = false;
       content_ = com.google.protobuf.ByteString.EMPTY;
     }
+
+      public static final int CMD_FIELD_NUMBER = 1;
+      public static final int DSTID_FIELD_NUMBER = 4;
+      public static final int ACK_FIELD_NUMBER = 5;
+      public static final int CONTENT_FIELD_NUMBER = 6;
+      // @@protoc_insertion_point(class_scope:tech.ganyaozi.dicegirl.proto.baseMessage)
+      private static final baseMessage DEFAULT_INSTANCE;
+      private static final long serialVersionUID = 0L;
+      private static final com.google.protobuf.Parser<baseMessage>
+              PARSER = new com.google.protobuf.AbstractParser<baseMessage>() {
+          public baseMessage parsePartialFrom(
+                  com.google.protobuf.CodedInputStream input,
+                  com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                  throws com.google.protobuf.InvalidProtocolBufferException {
+              return new baseMessage(input, extensionRegistry);
+          }
+      };
+
+      static {
+          DEFAULT_INSTANCE = new baseMessage();
+      }
+
+      public static final int SEQ_FIELD_NUMBER = 2;
+      private long seq_;
+
+      /**
+       * <code>fixed64 seq = 2;</code>
+       */
+      public long getSeq() {
+          return seq_;
+      }
+
+      public static final int SRCID_FIELD_NUMBER = 3;
+
+      private volatile Object srcID_;
+      private volatile Object dstID_;
+      private int cmd_;
+      private boolean ack_;
+      private com.google.protobuf.ByteString content_;
+      private byte memoizedIsInitialized = -1;
+
     private baseMessage(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -399,13 +403,13 @@ public final class BaseMessage {
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+                String s = input.readStringRequireUtf8();
 
               srcID_ = s;
               break;
             }
             case 34: {
-              String s = input.readStringRequireUtf8();
+                String s = input.readStringRequireUtf8();
 
               dstID_ = s;
               break;
@@ -432,154 +436,170 @@ public final class BaseMessage {
       }
     }
 
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
-    }
+      public static final com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+          return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
+      }
 
-    public static baseMessage parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
+      public static baseMessage parseFrom(
+              java.nio.ByteBuffer data)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+      }
 
-    public static baseMessage parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
+      public static baseMessage parseFrom(
+              java.nio.ByteBuffer data,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+      }
 
-    public static baseMessage parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
+      public static baseMessage parseFrom(
+              com.google.protobuf.ByteString data)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+      }
 
-    public static baseMessage parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
+      public static baseMessage parseFrom(
+              com.google.protobuf.ByteString data,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+      }
 
-    public static baseMessage parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
+      public static baseMessage parseFrom(byte[] data)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+      }
 
-    public static baseMessage parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
+      public static baseMessage parseFrom(
+              byte[] data,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+      }
 
-    public static baseMessage parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
-    }
+      public static baseMessage parseFrom(java.io.InputStream input)
+              throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+                  .parseWithIOException(PARSER, input);
+      }
 
-    public static baseMessage parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
-    }
+      public static baseMessage parseFrom(
+              java.io.InputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+                  .parseWithIOException(PARSER, input, extensionRegistry);
+      }
 
-    public static baseMessage parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
-    }
+      public static baseMessage parseDelimitedFrom(java.io.InputStream input)
+              throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+                  .parseDelimitedWithIOException(PARSER, input);
+      }
 
-    public static baseMessage parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
+      public static baseMessage parseDelimitedFrom(
+              java.io.InputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+                  .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
 
-    public static baseMessage parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
-    }
+      public static baseMessage parseFrom(
+              com.google.protobuf.CodedInputStream input)
+              throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+                  .parseWithIOException(PARSER, input);
+      }
 
-    public static baseMessage parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
-    }
+      public static baseMessage parseFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+                  .parseWithIOException(PARSER, input, extensionRegistry);
+      }
 
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
+      public static Builder newBuilder(baseMessage prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
 
-    public static Builder newBuilder(baseMessage prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
+      public static baseMessage getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+      }
 
-    public static baseMessage getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
+      public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+      }
 
-    public static com.google.protobuf.Parser<baseMessage> parser() {
-      return PARSER;
-    }
+      public static com.google.protobuf.Parser<baseMessage> parser() {
+          return PARSER;
+      }
 
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
+      /**
+       * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
+       */
+      public int getCmdValue() {
+          return cmd_;
+      }
 
-    protected FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      baseMessage.class, Builder.class);
-    }
+      /**
+       * <code>bool ack = 5;</code>
+       */
+      public boolean getAck() {
+          return ack_;
+      }
 
-    /**
-     * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
-     */
-    public int getCmdValue() {
-      return cmd_;
-    }
+      /**
+       * <code>bytes content = 6;</code>
+       */
+      public com.google.protobuf.ByteString getContent() {
+          return content_;
+      }
 
-    /**
-     * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
-     */
-    public Commands getCmd() {
-      Commands result = Commands.valueOf(cmd_);
-      return result == null ? Commands.UNRECOGNIZED : result;
-    }
+      public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
 
-    /**
-     * <code>fixed64 seq = 2;</code>
-     */
-    public long getSeq() {
-      return seq_;
+          memoizedIsInitialized = 1;
+          return true;
+      }
+
+      @Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      }
+
+      protected FieldAccessorTable
+      internalGetFieldAccessorTable() {
+          return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
+                  .ensureFieldAccessorsInitialized(
+                          baseMessage.class, Builder.class);
+      }
+
+      /**
+       * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
+       */
+      public Commands getCmd() {
+          Commands result = Commands.valueOf(cmd_);
+          return result == null ? Commands.UNRECOGNIZED : result;
     }
 
     /**
      * <code>string srcID = 3;</code>
      */
     public String getSrcID() {
-      Object ref = srcID_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        Object ref = srcID_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
         srcID_ = s;
         return s;
       }
@@ -590,11 +610,11 @@ public final class BaseMessage {
      */
     public com.google.protobuf.ByteString
     getSrcIDBytes() {
-      Object ref = srcID_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (String) ref);
+        Object ref = srcID_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8(
+                    (String) ref);
         srcID_ = b;
         return b;
       } else {
@@ -606,13 +626,13 @@ public final class BaseMessage {
      * <code>string dstID = 4;</code>
      */
     public String getDstID() {
-      Object ref = dstID_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        Object ref = dstID_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
         dstID_ = s;
         return s;
       }
@@ -623,44 +643,25 @@ public final class BaseMessage {
      */
     public com.google.protobuf.ByteString
     getDstIDBytes() {
-      Object ref = dstID_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (String) ref);
+        Object ref = dstID_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8(
+                    (String) ref);
         dstID_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
+        }
+    }
+
+      public Builder newBuilderForType() {
+          return newBuilder();
       }
-    }
-
-    /**
-     * <code>bool ack = 5;</code>
-     */
-    public boolean getAck() {
-      return ack_;
-    }
-
-    /**
-     * <code>bytes content = 6;</code>
-     */
-    public com.google.protobuf.ByteString getContent() {
-      return content_;
-    }
-
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
-      if (cmd_ != Commands.IM_PING_PONG.getNumber()) {
+        if (cmd_ != Commands.IM_DEFUALT.getNumber()) {
         output.writeEnum(1, cmd_);
       }
       if (seq_ != 0L) {
@@ -680,18 +681,23 @@ public final class BaseMessage {
       }
     }
 
+      public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+                  ? new Builder() : new Builder().mergeFrom(this);
+      }
+
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
-      size = 0;
-      if (cmd_ != Commands.IM_PING_PONG.getNumber()) {
+        size = 0;
+        if (cmd_ != Commands.IM_DEFUALT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-                .computeEnumSize(1, cmd_);
+          .computeEnumSize(1, cmd_);
       }
       if (seq_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-                .computeFixed64Size(2, seq_);
+          .computeFixed64Size(2, seq_);
       }
       if (!getSrcIDBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, srcID_);
@@ -707,19 +713,19 @@ public final class BaseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(6, content_);
       }
-      memoizedSize = size;
-      return size;
+        memoizedSize = size;
+        return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof baseMessage)) {
+      @Override
+      public boolean equals(final Object obj) {
+          if (obj == this) {
+              return true;
+          }
+          if (!(obj instanceof baseMessage)) {
         return super.equals(obj);
-      }
-      baseMessage other = (baseMessage) obj;
+          }
+          baseMessage other = (baseMessage) obj;
 
       boolean result = true;
       result = result && cmd_ == other.cmd_;
@@ -733,7 +739,7 @@ public final class BaseMessage {
           == other.getAck());
       result = result && getContent()
           .equals(other.getContent());
-      return result;
+          return result;
     }
 
     @Override
@@ -747,7 +753,7 @@ public final class BaseMessage {
       hash = (53 * hash) + cmd_;
       hash = (37 * hash) + SEQ_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getSeq());
+          getSeq());
       hash = (37 * hash) + SRCID_FIELD_NUMBER;
       hash = (53 * hash) + getSrcID().hashCode();
       hash = (37 * hash) + DSTID_FIELD_NUMBER;
@@ -759,74 +765,57 @@ public final class BaseMessage {
       hash = (53 * hash) + getContent().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
-      return hash;
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
+        return hash;
     }
 
     @Override
     protected Builder newBuilderForType(
             BuilderParent parent) {
       Builder builder = new Builder(parent);
-      return builder;
+        return builder;
     }
 
-    @Override
-    public com.google.protobuf.Parser<baseMessage> getParserForType() {
-      return PARSER;
-    }
+      @Override
+      public com.google.protobuf.Parser<baseMessage> getParserForType() {
+          return PARSER;
+      }
 
-    public baseMessage getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
+      public baseMessage getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+      }
 
     /**
      * Protobuf type {@code tech.ganyaozi.dicegirl.proto.baseMessage}
      */
     public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:tech.ganyaozi.dicegirl.proto.baseMessage)
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tech.ganyaozi.dicegirl.proto.baseMessage)
             baseMessageOrBuilder {
-      private int cmd_ = 0;
-      private long seq_;
-      private Object srcID_ = "";
-      private Object dstID_ = "";
-      private boolean ack_;
-      private com.google.protobuf.ByteString content_ = com.google.protobuf.ByteString.EMPTY;
+        private Object srcID_ = "";
+        private Object dstID_ = "";
 
       // Construct using tech.ganyaozi.dicegirl.proto.BaseMessage.baseMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
-      }
-
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    baseMessage.class, Builder.class);
-      }
-
+        private int cmd_ = 0;
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
         }
       }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
+        }
 
       public Builder clear() {
         super.clear();
@@ -842,28 +831,35 @@ public final class BaseMessage {
 
         content_ = com.google.protobuf.ByteString.EMPTY;
 
-        return this;
+          return this;
       }
+
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            baseMessage.class, Builder.class);
+        }
 
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
+      getDescriptorForType() {
+          return BaseMessage.internal_static_tech_ganyaozi_dicegirl_proto_baseMessage_descriptor;
       }
 
-      public baseMessage getDefaultInstanceForType() {
-        return baseMessage.getDefaultInstance();
-      }
+        public baseMessage getDefaultInstanceForType() {
+            return baseMessage.getDefaultInstance();
+        }
 
-      public baseMessage build() {
-        baseMessage result = buildPartial();
+        public baseMessage build() {
+            baseMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
-        return result;
-      }
+            return result;
+        }
 
-      public baseMessage buildPartial() {
-        baseMessage result = new baseMessage(this);
+        public baseMessage buildPartial() {
+            baseMessage result = new baseMessage(this);
         result.cmd_ = cmd_;
         result.seq_ = seq_;
         result.srcID_ = srcID_;
@@ -871,52 +867,72 @@ public final class BaseMessage {
         result.ack_ = ack_;
         result.content_ = content_;
         onBuilt();
-        return result;
-      }
+            return result;
+        }
 
-      public Builder clone() {
-        return super.clone();
+        public Builder clone() {
+            return super.clone();
       }
 
       public Builder setField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
               Object value) {
-        return super.setField(field, value);
+          return super.setField(field, value);
       }
 
       public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
       }
 
       public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
       }
 
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, Object value) {
+          return super.setRepeatedField(field, index, value);
       }
 
       public Builder addRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
+              Object value) {
+          return super.addRepeatedField(field, value);
       }
+
+        public final boolean isInitialized() {
+            return true;
+        }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof baseMessage) {
-          return mergeFrom((baseMessage) other);
+          if (other instanceof baseMessage) {
+              return mergeFrom((baseMessage)other);
         } else {
-          super.mergeFrom(other);
-          return this;
-        }
+              super.mergeFrom(other);
+              return this;
+          }
       }
 
-      public Builder mergeFrom(baseMessage other) {
-        if (other == baseMessage.getDefaultInstance()) return this;
+        /**
+         * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
+         */
+        public int getCmdValue() {
+            return cmd_;
+        }
+
+        /**
+         * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
+         */
+        public Builder setCmdValue(int value) {
+            cmd_ = value;
+            onChanged();
+            return this;
+        }
+
+        public Builder mergeFrom(baseMessage other) {
+            if (other == baseMessage.getDefaultInstance()) return this;
         if (other.cmd_ != 0) {
           setCmdValue(other.getCmdValue());
         }
@@ -941,19 +957,15 @@ public final class BaseMessage {
         return this;
       }
 
-      public final boolean isInitialized() {
-        return true;
-      }
-
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        baseMessage parsedMessage = null;
+              throws java.io.IOException {
+          baseMessage parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (baseMessage) e.getUnfinishedMessage();
+            parsedMessage = (baseMessage) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -962,44 +974,6 @@ public final class BaseMessage {
         }
         return this;
       }
-
-      /**
-       * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
-       */
-      public int getCmdValue() {
-        return cmd_;
-      }
-
-      /**
-       * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
-       */
-      public Builder setCmdValue(int value) {
-        cmd_ = value;
-        onChanged();
-        return this;
-      }
-
-      /**
-       * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
-       */
-      public Commands getCmd() {
-        Commands result = Commands.valueOf(cmd_);
-        return result == null ? Commands.UNRECOGNIZED : result;
-      }
-
-      /**
-       * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
-       */
-      public Builder setCmd(Commands value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-
-        cmd_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-
       /**
        * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
        */
@@ -1010,13 +984,13 @@ public final class BaseMessage {
         return this;
       }
 
+      private long seq_ ;
       /**
        * <code>fixed64 seq = 2;</code>
        */
       public long getSeq() {
         return seq_;
       }
-
       /**
        * <code>fixed64 seq = 2;</code>
        */
@@ -1026,161 +1000,181 @@ public final class BaseMessage {
         onChanged();
         return this;
       }
-
       /**
        * <code>fixed64 seq = 2;</code>
        */
       public Builder clearSeq() {
 
-        seq_ = 0L;
-        onChanged();
-        return this;
+          seq_ = 0L;
+          onChanged();
+          return this;
       }
 
-      /**
-       * <code>string srcID = 3;</code>
-       */
-      public String getSrcID() {
-        Object ref = srcID_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-                  (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          srcID_ = s;
-          return s;
-        } else {
-          return (String) ref;
+        /**
+         * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
+         */
+        public Commands getCmd() {
+            Commands result = Commands.valueOf(cmd_);
+            return result == null ? Commands.UNRECOGNIZED : result;
         }
+
+        /**
+         * <code>.tech.ganyaozi.dicegirl.proto.Commands cmd = 1;</code>
+         */
+        public Builder setCmd(Commands value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            cmd_ = value.getNumber();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string srcID = 3;</code>
+         */
+        public String getSrcID() {
+            Object ref = srcID_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
+                srcID_ = s;
+                return s;
+            } else {
+                return (String) ref;
+            }
       }
 
-      /**
-       * <code>string srcID = 3;</code>
-       */
+        /**
+         * <code>string srcID = 3;</code>
+         */
       public Builder setSrcID(
               String value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
+          if (value == null) {
+              throw new NullPointerException();
+  }
 
-        srcID_ = value;
+          srcID_ = value;
         onChanged();
         return this;
       }
-
-      /**
-       * <code>string srcID = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-      getSrcIDBytes() {
-        Object ref = srcID_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (String) ref);
-          srcID_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      /**
-       * <code>string srcID = 3;</code>
-       */
-      public Builder setSrcIDBytes(
-              com.google.protobuf.ByteString value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        checkByteStringIsUtf8(value);
-
-        srcID_ = value;
-        onChanged();
-        return this;
-      }
-
       /**
        * <code>string srcID = 3;</code>
        */
       public Builder clearSrcID() {
 
-        srcID_ = getDefaultInstance().getSrcID();
-        onChanged();
-        return this;
+          srcID_ = getDefaultInstance().getSrcID();
+          onChanged();
+          return this;
       }
 
-      /**
-       * <code>string dstID = 4;</code>
-       */
-      public String getDstID() {
-        Object ref = dstID_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-                  (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          dstID_ = s;
-          return s;
-        } else {
-          return (String) ref;
+        /**
+         * <code>string srcID = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+        getSrcIDBytes() {
+            Object ref = srcID_;
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (String) ref);
+                srcID_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
         }
-      }
 
       /**
-       * <code>string dstID = 4;</code>
+       * <code>string srcID = 3;</code>
        */
-      public Builder setDstID(
-              String value) {
+      public Builder setSrcIDBytes(
+          com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
+          checkByteStringIsUtf8(value);
 
-        dstID_ = value;
-        onChanged();
-        return this;
+          srcID_ = value;
+          onChanged();
+          return this;
       }
 
-      /**
-       * <code>string dstID = 4;</code>
-       */
-      public com.google.protobuf.ByteString
-      getDstIDBytes() {
-        Object ref = dstID_;
+        /**
+         * <code>string dstID = 4;</code>
+         */
+        public String getDstID() {
+            Object ref = dstID_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                String s = bs.toStringUtf8();
+                dstID_ = s;
+                return s;
+            } else {
+                return (String) ref;
+            }
+        }
+
+        /**
+         * <code>string dstID = 4;</code>
+         */
+        public Builder setDstID(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            dstID_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string dstID = 4;</code>
+         */
+        public com.google.protobuf.ByteString
+        getDstIDBytes() {
+            Object ref = dstID_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
           dstID_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
-      }
-
-      /**
-       * <code>string dstID = 4;</code>
-       */
-      public Builder setDstIDBytes(
-              com.google.protobuf.ByteString value) {
-        if (value == null) {
-          throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
 
-        dstID_ = value;
+        /**
+         * <code>string dstID = 4;</code>
+         */
+        public Builder setDstIDBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+  }
+            checkByteStringIsUtf8(value);
+
+            dstID_ = value;
         onChanged();
         return this;
       }
 
-      /**
-       * <code>string dstID = 4;</code>
-       */
-      public Builder clearDstID() {
+        /**
+         * <code>string dstID = 4;</code>
+         */
+        public Builder clearDstID() {
 
-        dstID_ = getDefaultInstance().getDstID();
+            dstID_ = getDefaultInstance().getDstID();
         onChanged();
         return this;
       }
 
+      private boolean ack_ ;
       /**
        * <code>bool ack = 5;</code>
        */
@@ -1188,26 +1182,27 @@ public final class BaseMessage {
         return ack_;
       }
 
-      /**
-       * <code>bool ack = 5;</code>
+        /**
+         * <code>bool ack = 5;</code>
        */
       public Builder setAck(boolean value) {
 
-        ack_ = value;
+          ack_ = value;
         onChanged();
         return this;
       }
 
-      /**
-       * <code>bool ack = 5;</code>
+        /**
+         * <code>bool ack = 5;</code>
        */
       public Builder clearAck() {
 
-        ack_ = false;
+          ack_ = false;
         onChanged();
         return this;
       }
 
+      private com.google.protobuf.ByteString content_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>bytes content = 6;</code>
        */
@@ -1218,11 +1213,11 @@ public final class BaseMessage {
        * <code>bytes content = 6;</code>
        */
       public Builder setContent(com.google.protobuf.ByteString value) {
-        if (value == null) {
+          if (value == null) {
     throw new NullPointerException();
   }
 
-        content_ = value;
+          content_ = value;
         onChanged();
         return this;
       }
@@ -1231,11 +1226,10 @@ public final class BaseMessage {
        */
       public Builder clearContent() {
 
-        content_ = getDefaultInstance().getContent();
+          content_ = getDefaultInstance().getContent();
         onChanged();
         return this;
       }
-
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;

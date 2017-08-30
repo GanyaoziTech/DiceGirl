@@ -13,6 +13,6 @@ public class LocalAkkaSystem {
             _system = ActorSystem.create("IM_local_system");
         }
         // message queue
-        return _system.actorOf(Props.create(BussinessCenterActor.class), "bussiness_center");
+        return _system.actorOf(Props.create(DispatcherActor.class), "bussiness_center");
     }
 }

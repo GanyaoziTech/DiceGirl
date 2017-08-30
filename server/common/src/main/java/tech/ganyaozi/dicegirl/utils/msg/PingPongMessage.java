@@ -1,4 +1,4 @@
-package tech.ganyaozi.dicegirl.msg;
+package tech.ganyaozi.dicegirl.utils.msg;
 
 import com.google.protobuf.ByteString;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
