@@ -8,3 +8,7 @@ server/common/target/
 *.log
 *.classpath
 *.project
+
+*/target/
+/target/
+
