@@ -6,8 +6,8 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.AttributeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tech.ganyaozi.dicegirl.msg.PingPongMessage;
 import tech.ganyaozi.dicegirl.proto.BaseMessage;
-import tech.ganyaozi.dicegirl.utils.msg.PingPongMessage;
 
 import java.io.IOException;
 

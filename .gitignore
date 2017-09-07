@@ -12,3 +12,8 @@ server/common/target/
 */target/
 /target/
 
+server/dice.girl.IM/client/target/
+server/dice.girl.IM/common/target/
+server/dice.girl.IM/server/target/
+server/dice.girl.Weixin/log/
+server/dice.girl.Weixin/target/

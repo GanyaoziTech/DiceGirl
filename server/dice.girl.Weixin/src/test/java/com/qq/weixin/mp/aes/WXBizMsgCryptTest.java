@@ -20,19 +20,20 @@ import java.io.StringReader;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+@SuppressWarnings("Duplicates")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/resources/weixin-sevlet.xml"})
 public class WXBizMsgCryptTest {
 
-    String timestamp = "1409304348";
-    String nonce = "xxxxxx";
-    String appId = "wxb11529c136998cb6";
-    String replyMsg = "我是中文abcd123";
-    String xmlFormat = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%1$s]]></Encrypt></xml>";
-    String afterAesEncrypt = "ZGw32saJhSF0TsqysiTmaVJSQKRg2ID4a9rVNrTfTlCcaamKO7BKxrAH9ANb4BITQR4wW10j8IKJYhuZDh73pQ==";
-    String randomStr = "aaaabbbbccccdddd";
-    String replyMsg2 = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><FromUserName><![CDATA[gh_7f083739789a]]></FromUserName><CreateTime>1407743423</CreateTime><MsgType><![CDATA[video]]></MsgType><Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]></MediaId><Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]></Description></Video></xml>";
-    String afterAesEncrypt2 = "ZGw32saJhSF0TsqysiTmaQcZZFJCQ+HoK7LsJAekv/yUtQQavrsiRbKmxwP3GW8EeWpvLQj3mklkQMgnm4fGtYw7T3owI1HpbZXlw3kT/WuFcT/EPgrZSUMu0dN1h3iHWF/B/139MRqwfMfdW2ZPEF1S5ULuPhSqMvvso5ABkMi2KzBgxQP5R/vIhlScux7Ixsnks4DwOnfziC3of/GZxsqbGBu/5JOdre9alLIBmt0lAIvjKK5aB0SSla/VAibQ0gC+xHgAN/Ahkgq6OH+LoDLuoDMFYZ7fNYMtgTrnC+ax8RrS712me8Vf5Z45Z7Z/29qOQQxw3Nr4DPc962s/o5/ASVtvsZNnKcGwSs7tty8CR2Ik4H/GhOb69o1EHTkyIdwDZSHrICyj94M5IvcyrMx3/xH0Wg86Hx6BYRHue1+XS5wTMWWTemQK0KkO/bMe23fVo5nPTeMikwaA4P3O4S+JIwJuvKDTcRLIbYNqkYUvNCPbFxYdhKkGdaN7su6kPNdjGtbmXdAmpO2Cc4kfO1jiJWlAWXb6//wGJGQ+Dol6pT0A3lUMvcu+o3OeBKR4fywDkMxSqBIY573tFo1bauEqKIOhjAWEBwTrAR1Uik8ItZ9AzfQOgHA0HGKcUMm5";
+    private String timestamp = "1409304348";
+    private String nonce = "xxxxxx";
+    private String appId = "wxb11529c136998cb6";
+    private String replyMsg = "我是中文abcd123";
+    private String xmlFormat = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%1$s]]></Encrypt></xml>";
+    private String afterAesEncrypt = "ZGw32saJhSF0TsqysiTmaVJSQKRg2ID4a9rVNrTfTlCcaamKO7BKxrAH9ANb4BITQR4wW10j8IKJYhuZDh73pQ==";
+    private String randomStr = "aaaabbbbccccdddd";
+    private String replyMsg2 = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><FromUserName><![CDATA[gh_7f083739789a]]></FromUserName><CreateTime>1407743423</CreateTime><MsgType><![CDATA[video]]></MsgType><Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]></MediaId><Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]></Description></Video></xml>";
+    private String afterAesEncrypt2 = "ZGw32saJhSF0TsqysiTmaQcZZFJCQ+HoK7LsJAekv/yUtQQavrsiRbKmxwP3GW8EeWpvLQj3mklkQMgnm4fGtYw7T3owI1HpbZXlw3kT/WuFcT/EPgrZSUMu0dN1h3iHWF/B/139MRqwfMfdW2ZPEF1S5ULuPhSqMvvso5ABkMi2KzBgxQP5R/vIhlScux7Ixsnks4DwOnfziC3of/GZxsqbGBu/5JOdre9alLIBmt0lAIvjKK5aB0SSla/VAibQ0gC+xHgAN/Ahkgq6OH+LoDLuoDMFYZ7fNYMtgTrnC+ax8RrS712me8Vf5Z45Z7Z/29qOQQxw3Nr4DPc962s/o5/ASVtvsZNnKcGwSs7tty8CR2Ik4H/GhOb69o1EHTkyIdwDZSHrICyj94M5IvcyrMx3/xH0Wg86Hx6BYRHue1+XS5wTMWWTemQK0KkO/bMe23fVo5nPTeMikwaA4P3O4S+JIwJuvKDTcRLIbYNqkYUvNCPbFxYdhKkGdaN7su6kPNdjGtbmXdAmpO2Cc4kfO1jiJWlAWXb6//wGJGQ+Dol6pT0A3lUMvcu+o3OeBKR4fywDkMxSqBIY573tFo1bauEqKIOhjAWEBwTrAR1Uik8ItZ9AzfQOgHA0HGKcUMm5";
     @Value("${weixin-token}")
     private String token;
     @Value("${weixin-encoding-aes-key}")
@@ -142,15 +143,5 @@ public class WXBizMsgCryptTest {
         fail("错误流程不抛出异常？？？");
     }
 
-    @Test
-    public void testVerifyUrl() throws AesException {
-        WXBizMsgCrypt wxcpt = new WXBizMsgCrypt("QDG6eK",
-                "jWmYm7qr5nMoAUwZRjGtBxmz3KA1tkAj3ykkR6q2B2C", "wx5823bf96d3bd56c7");
-        String verifyMsgSig = "5c45ff5e21c57e6ad56bac8758b79b1d9ac89fd3";
-        String timeStamp = "1409659589";
-        String nonce = "263014780";
-        String echoStr = "P9nAzCzyDtyTWESHep1vC5X9xho/qYX3Zpb4yKa9SKld1DsH3Iyt3tP3zNdtp+4RPcs8TgAE7OaBO+FZXvnaqQ==";
-        wxcpt.verifyUrl(verifyMsgSig, timeStamp, nonce, echoStr);
-        // 只要不抛出异常就好
-    }
+
 }

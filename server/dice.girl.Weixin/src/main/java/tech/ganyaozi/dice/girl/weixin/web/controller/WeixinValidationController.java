@@ -1,44 +1,123 @@
 package tech.ganyaozi.dice.girl.weixin.web.controller;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import com.qq.weixin.mp.aes.AesException;
+import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import tech.ganyaozi.dice.girl.weixin.web.service.DispatcherService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author Derek.P.Dai[derek.dai@corp.netease.com]
  **/
-@RequestMapping("/weixin/validation/")
+@RequestMapping("/weixin/")
 @Controller
 public class WeixinValidationController {
+    private static final Logger logger = LoggerFactory.getLogger(WeixinValidationController.class);
+
+    private final DispatcherService service;
+    //  加密的辅助类
+    private WXBizMsgCrypt wxBizMsgCrypt;
     @Value("${weixin-token}")
     private String token;
-
     @Value("${weixin-encoding-aes-key}")
     private String encodingAesKey;
+    @Value("${weixin-app-id}")
+    private String appId;
 
-    @RequestMapping("/init")
-    @ResponseBody
-    public String validate(String signature, Long timestamp, String nonce, String echostr) {
-        // 将token、timestamp、nonce三个参数进行字典序排序
-        ArrayList<String> paramList = new ArrayList<>(Arrays.asList(signature, timestamp.toString(), nonce));
-        Collections.sort(paramList);
-
-        // 将三个参数字符串拼接成一个字符串进行sha1加密
-        String raw = StringUtils.join(paramList);
-        String sign = DigestUtils.sha1Hex(raw);
-
-        if (StringUtils.equalsIgnoreCase(sign, signature)) {
-            return echostr;
-        } else {
-            return "fail";
-        }
+    @Autowired
+    public WeixinValidationController(DispatcherService service) {
+        this.service = service;
     }
+
+
+    @RequestMapping(value = "/receive", method = RequestMethod.GET)
+    @ResponseBody
+    public String verify(HttpServletResponse response, String signature, Long timestamp, String nonce, String echostr) throws IOException, AesException {
+        // 将token、timestamp、nonce三个参数进行字典序排序
+        if (StringUtils.isBlank(signature)) {
+            logger.error("cannot get signature");
+            return "cannot get signature";
+        }
+        if (timestamp == null || timestamp < 0) {
+            logger.error("cannot get timestamp");
+            return "cannot get timestamp";
+        }
+        if (StringUtils.isBlank(nonce)) {
+            logger.error("cannot get nonce");
+            return "cannot get nonce";
+        }
+        if (StringUtils.isBlank(signature)) {
+            logger.error("cannot get signature");
+            return "cannot get signature";
+        }
+        if (StringUtils.isBlank(echostr)) {
+            logger.error("cannot get echostr");
+            return "cannot get echostr";
+        }
+
+        if (wxBizMsgCrypt == null) {
+            initWXMsgCrypt();
+            if (wxBizMsgCrypt == null) {
+                return null;
+            }
+        }
+        if (wxBizMsgCrypt.checkSignature(signature, String.valueOf(timestamp), nonce))
+            response.getWriter().print(echostr);
+        return null;
+    }
+
+    private void initWXMsgCrypt() throws AesException {
+        wxBizMsgCrypt = new WXBizMsgCrypt(token, encodingAesKey, appId);
+    }
+
+    @RequestMapping(value = "/receive", method = RequestMethod.POST)
+    @ResponseBody
+    public String validate(HttpServletRequest request
+            , HttpServletResponse response
+            , @RequestBody String postData
+            , @RequestParam(value = "encrypt_type") String encryptType
+            , String msg_signature
+            , String signature
+            , String timestamp
+            , String nonce) throws IOException, AesException {
+        if (wxBizMsgCrypt == null) {
+            initWXMsgCrypt();
+            if (wxBizMsgCrypt == null) {
+                return null;
+            }
+        }
+        logger.info("\nraw : \n{} ", postData);
+        try (PrintWriter out = response.getWriter()) {
+            if (wxBizMsgCrypt.checkSignature(signature, timestamp, nonce)) {
+                if ("aes".equals(encryptType)) {
+                    String xmlText = wxBizMsgCrypt.decryptMsg(msg_signature, timestamp, nonce, postData);
+                    logger.info(xmlText);
+                    String respXml = service.processRequest(xmlText);
+                    respXml = wxBizMsgCrypt.encryptMsg(respXml, timestamp, nonce);
+                    logger.info(respXml);
+                    out.print(respXml);
+                } else {
+                    String respXml = service.processRequest(postData);
+                    out.print(respXml);
+                }
+            } else {
+                out.print("check signature fail");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }
