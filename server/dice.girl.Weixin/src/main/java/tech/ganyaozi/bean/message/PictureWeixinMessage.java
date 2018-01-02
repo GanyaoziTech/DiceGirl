@@ -1,14 +1,16 @@
-package tech.ganyaozi.dice.girl.weixin.web.bean.message;
+package tech.ganyaozi.bean.message;
 
-import tech.ganyaozi.dice.girl.weixin.web.bean._BaseWeixinMessage;
+import tech.ganyaozi.bean.BaseWeixinMessage;
 
 /**
  * 图片类消息
  *
  * @author Derek.P.Dai[derek.dai@corp.netease.com]
  **/
-public class PictureWeixinMessage extends _BaseWeixinMessage {
-    // 图片链接
+public class PictureWeixinMessage extends BaseWeixinMessage {
+    /**
+     * 图片链接
+     */
     private String PicUrl;
     private String MediaId;
 

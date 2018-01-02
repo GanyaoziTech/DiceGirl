@@ -1,16 +1,18 @@
-package tech.ganyaozi.dice.girl.weixin.web.bean.message;
+package tech.ganyaozi.bean.message;
 
 
-import tech.ganyaozi.dice.girl.weixin.web.bean._BaseWeixinMessage;
+import tech.ganyaozi.bean.BaseWeixinMessage;
 
 /**
  * 文本消息
  *
  * @author Derek.P.Dai[derek.dai@corp.netease.com]
  **/
-public class TextWeixinMessage extends _BaseWeixinMessage {
+public class TextWeixinMessage extends BaseWeixinMessage {
 
-    // 消息内容
+    /**
+     * 消息内容
+     */
     private String Content;
 
     public String getContent() {

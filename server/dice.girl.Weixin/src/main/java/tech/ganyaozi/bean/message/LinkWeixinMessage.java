@@ -1,4 +1,4 @@
-package tech.ganyaozi.dice.girl.weixin.web.bean.message;
+package tech.ganyaozi.bean.message;
 
 /**
  * 类名: LinkMessage </br>
@@ -7,11 +7,17 @@ package tech.ganyaozi.dice.girl.weixin.web.bean.message;
  * @author Derek.P.Dai[derek.dai@corp.netease.com]
  **/
 public class LinkWeixinMessage {
-    // 消息标题
+    /**
+     * 消息标题
+     */
     private String Title;
-    // 消息描述
+    /**
+     * 消息描述
+     */
     private String Description;
-    // 消息链接
+    /**
+     * 消息链接
+     */
     private String Url;
 
     public String getTitle() {

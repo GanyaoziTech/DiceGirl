@@ -1,19 +1,23 @@
-package tech.ganyaozi.dice.girl.weixin.web.bean.message;
+package tech.ganyaozi.bean.message;
 
-import tech.ganyaozi.dice.girl.weixin.web.bean._BaseWeixinMessage;
+import tech.ganyaozi.bean.BaseWeixinMessage;
 
 import java.util.List;
 
 /**
  * @author Derek.P.Dai[derek.dai@corp.netease.com]
  **/
-public class ArticleWeixinMessage extends _BaseWeixinMessage {
+public class ArticleWeixinMessage extends BaseWeixinMessage {
 
-    // 图文消息个数，限制为10条以内
+    /**
+     * 图文消息个数，限制为10条以内
+     */
     private int ArticleCount;
     private List<Article> Articles;
 
-    // 多条图文消息信息，默认第一个item为大图
+    /**
+     * 多条图文消息信息，默认第一个item为大图
+     */
     public int getArticleCount() {
         return ArticleCount;
     }
@@ -31,13 +35,15 @@ public class ArticleWeixinMessage extends _BaseWeixinMessage {
     }
 
     public class Article {
-        // 图文消息名称
+        /**
+         * 图文消息名称
+         */
         private String Title;
-        // 图文消息描述
+        /** 图文消息描述 */
         private String Description;
-        // 图片链接，支持JPG、PNG格式，较好的效果为大图640*320，小图80*80
+        /** 图片链接，支持JPG、PNG格式，较好的效果为大图640*320，小图80*80*/
         private String PicUrl;
-        // 点击图文消息跳转链接
+        /** 点击图文消息跳转链接*/
         private String Url;
 
         public String getTitle() {

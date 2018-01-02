@@ -1,4 +1,4 @@
-package tech.ganyaozi.dice.girl.weixin.web.bean.message;
+package tech.ganyaozi.bean.message;
 
 /**
  * 类名: VideoMessage </br>
@@ -8,9 +8,13 @@ package tech.ganyaozi.dice.girl.weixin.web.bean.message;
  **/
 public class VideoWeixinMessage {
 
-    // 媒体ID
+    /**
+     * 媒体ID
+     */
     private String MediaId;
-    // 语音格式
+    /**
+     * 语音格式
+     */
     private String ThumbMediaId;
 
     public String getMediaId() {

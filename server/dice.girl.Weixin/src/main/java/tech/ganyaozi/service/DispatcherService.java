@@ -1,8 +1,8 @@
-package tech.ganyaozi.dice.girl.weixin.web.service;
+package tech.ganyaozi.service;
 
 import org.springframework.stereotype.Service;
-import tech.ganyaozi.dice.girl.weixin.web.bean.message.TextWeixinMessage;
-import tech.ganyaozi.dice.girl.weixin.web.utils.MessageConvertUtil;
+import tech.ganyaozi.bean.message.TextWeixinMessage;
+import tech.ganyaozi.utils.MessageConvertUtil;
 
 import java.util.Date;
 import java.util.Map;
@@ -14,7 +14,7 @@ import java.util.Map;
 public class DispatcherService {
 
 
-    public String processRequest(String xmlText) throws Exception {
+    public String processRequest(String xmlText) {
 // xml格式的消息数据
         String respXml = null;
         // 默认返回的文本消息内容
@@ -68,6 +68,8 @@ public class DispatcherService {
                 case MessageConvertUtil.REQ_MESSAGE_TYPE_EVENT:
                     respContent = handleEvent(requestMap);
                     break;
+                default:
+                    break;
             }
             // 设置文本消息的内容
             textMessage.setContent(respContent);
@@ -103,6 +105,8 @@ public class DispatcherService {
             // 自定义菜单
             case MessageConvertUtil.EVENT_TYPE_CLICK:
                 // TODO 处理菜单点击事件
+                break;
+            default:
                 break;
         }
         return respContent;

@@ -1,11 +1,11 @@
-package tech.ganyaozi.dice.girl.weixin.web.bean.message;
+package tech.ganyaozi.bean.message;
 
-import tech.ganyaozi.dice.girl.weixin.web.bean._BaseWeixinMessage;
+import tech.ganyaozi.bean.BaseWeixinMessage;
 
 /**
  * @author Derek.P.Dai[derek.dai@corp.netease.com]
  **/
-public class MusicWeixinMessage extends _BaseWeixinMessage {
+public class MusicWeixinMessage extends BaseWeixinMessage {
 
     private Music Music;
 
@@ -19,15 +19,21 @@ public class MusicWeixinMessage extends _BaseWeixinMessage {
 
 
     public class Music {
-        // 音乐标题
+        /**
+         * 音乐标题
+         */
         private String title;
-        // 音乐描述
+        /**
+         * 音乐描述
+         */
         private String description;
-        // 音乐链接
+        /**
+         * 音乐链接
+         */
         private String musicUrl;
-        // 高质量音乐链接，WIFI环境优先使用该链接播放音乐
+        /** 高质量音乐链接，WIFI环境优先使用该链接播放音乐 */
         private String hQMusicUrl;
-        // 缩略图的媒体id，通过上传多媒体文件得到的id
+        /** 缩略图的媒体id，通过上传多媒体文件得到的id */
         private String thumbMediaId;
 
         public String getTitle() {

@@ -1,4 +1,4 @@
-package tech.ganyaozi.dice.girl.weixin.web.controller;
+package tech.ganyaozi.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
