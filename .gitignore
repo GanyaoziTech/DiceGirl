@@ -5,10 +5,15 @@ server/common/target/
 /.idea
 /out/
 *.iml
-*.log
 *.classpath
 *.project
 
 */target/
 /target/
+
+server/dice.girl.IM/client/target/
+server/dice.girl.IM/common/src/test/
+server/dice.girl.IM/common/target/
+server/dice.girl.IM/server/target/
+server/dice.girl.Weixin/log/
 
