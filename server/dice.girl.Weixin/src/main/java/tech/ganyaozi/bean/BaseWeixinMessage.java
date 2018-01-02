@@ -3,7 +3,7 @@ package tech.ganyaozi.bean;
 import java.util.Date;
 
 /**
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class BaseWeixinMessage {
 

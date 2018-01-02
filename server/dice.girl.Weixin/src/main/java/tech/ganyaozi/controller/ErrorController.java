@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  * @date 2017/9/6 15:43
  **/
 @Controller

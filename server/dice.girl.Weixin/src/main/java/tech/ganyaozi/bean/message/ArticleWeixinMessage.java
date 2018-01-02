@@ -5,7 +5,7 @@ import tech.ganyaozi.bean.BaseWeixinMessage;
 import java.util.List;
 
 /**
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class ArticleWeixinMessage extends BaseWeixinMessage {
 

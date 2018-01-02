@@ -3,7 +3,7 @@ package tech.ganyaozi.bean.message;
 import tech.ganyaozi.bean.BaseWeixinMessage;
 
 /**
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class MusicWeixinMessage extends BaseWeixinMessage {
 

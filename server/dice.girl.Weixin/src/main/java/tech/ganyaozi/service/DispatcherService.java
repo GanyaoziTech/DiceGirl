@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 @Service
 public class DispatcherService {

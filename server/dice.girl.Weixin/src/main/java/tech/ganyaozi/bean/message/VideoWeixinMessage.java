@@ -4,7 +4,7 @@ package tech.ganyaozi.bean.message;
  * 类名: VideoMessage </br>
  * 描述: 请求消息之视频消息 </br>
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class VideoWeixinMessage {
 

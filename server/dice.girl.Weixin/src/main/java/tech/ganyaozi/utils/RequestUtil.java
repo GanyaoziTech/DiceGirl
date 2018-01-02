@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 获取HTTP请求的一些工具类
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  * @date 2017/9/14 17:08
  **/
 public class RequestUtil {

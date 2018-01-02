@@ -5,7 +5,7 @@ import tech.ganyaozi.bean.BaseWeixinMessage;
 /**
  * 图片类消息
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class PictureWeixinMessage extends BaseWeixinMessage {
     /**

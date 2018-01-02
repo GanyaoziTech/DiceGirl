@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * 用于控制微信平台的 access_token
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  *
  * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183">微信文档</a>
  **/

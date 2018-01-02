@@ -6,7 +6,7 @@ import tech.ganyaozi.bean.BaseWeixinMessage;
 /**
  * 文本消息
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class TextWeixinMessage extends BaseWeixinMessage {
 

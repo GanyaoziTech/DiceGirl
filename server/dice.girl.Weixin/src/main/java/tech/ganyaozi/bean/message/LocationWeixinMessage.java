@@ -6,7 +6,7 @@ import tech.ganyaozi.bean.BaseWeixinMessage;
  * 类名: LocationMessage </br>
  * 描述: 请求消息之地理位置消息 </br>
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class LocationWeixinMessage extends BaseWeixinMessage {
 

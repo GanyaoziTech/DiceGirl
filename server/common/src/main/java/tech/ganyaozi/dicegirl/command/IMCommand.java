@@ -1,7 +1,7 @@
 package tech.ganyaozi.dicegirl.command;
 
 /**
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  * @date 2017/8/30 16:26
  **/
 public enum IMCommand {

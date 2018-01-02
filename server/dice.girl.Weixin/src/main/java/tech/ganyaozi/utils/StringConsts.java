@@ -3,7 +3,7 @@ package tech.ganyaozi.utils;
 /**
  * 字符串相关常量
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  * @date 2017/9/14 17:10
  **/
 public class StringConsts {

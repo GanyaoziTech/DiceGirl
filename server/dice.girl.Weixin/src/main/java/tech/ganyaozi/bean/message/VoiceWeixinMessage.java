@@ -6,7 +6,7 @@ import tech.ganyaozi.bean.BaseWeixinMessage;
  * 类名: VoiceMessage </br>
  * 描述: 请求消息之语音消息 </br>
  *
- * @author Derek.P.Dai[derek.dai@corp.netease.com]
+ * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
 public class VoiceWeixinMessage extends BaseWeixinMessage {
 
