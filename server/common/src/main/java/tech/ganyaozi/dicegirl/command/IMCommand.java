@@ -12,6 +12,7 @@ public enum IMCommand {
     IM_SECURE_KEY(Module.SECURE, 0, true),
 
     /******************************* room related start***************************/
+
     IM_CREATE_ROOM_REQ(Module.ROOM, 0, true),
     IM_CREATE_ROOM_RES(Module.ROOM, 0, false),
 

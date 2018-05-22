@@ -11,10 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.SocketAddress;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
+/**
+ * client launcher class
+ *
+ * @author dp419936514@gmail.com
+ */
 public class DiceIMClient {
 
     private static final Logger logger = LoggerFactory.getLogger(DiceIMClient.class);
@@ -22,7 +25,8 @@ public class DiceIMClient {
     private static final int BOSS_GROUP_SIZE = 1;
     public static Channel channel;
     private static EventLoopGroup eventLoopGroup = new NioEventLoopGroup(BOSS_GROUP_SIZE);
-    private static ExecutorService service = Executors.newSingleThreadExecutor();
+
+    private static ExecutorService service = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new LinkedBlockingDeque<>(1), r -> new Thread("dice-im-client-thread"));
 
     private DiceIMClient() {
     }

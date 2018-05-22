@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
-public class MessageConvertUtil {
+public class WechatMessageConvertUtil {
     /**
      * 请求消息类型：文本
      */
