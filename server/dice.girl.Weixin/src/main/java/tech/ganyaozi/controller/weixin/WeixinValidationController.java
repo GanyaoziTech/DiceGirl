@@ -86,8 +86,7 @@ public class WeixinValidationController {
 
     @RequestMapping(value = "/receive", method = RequestMethod.POST)
     @ResponseBody
-    public String validate(HttpServletRequest request
-            , HttpServletResponse response
+    public String validate(HttpServletResponse response
             , @RequestBody String postData
             , @RequestParam(value = "encrypt_type") String encryptType
             , @RequestParam(value = "msg_signature") String msgSignature

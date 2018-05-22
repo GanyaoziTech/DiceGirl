@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <bean id="redisService" class="tech.ganyaozi.redis.RedisService">
+        <constructor-arg>
+            <bean class="tech.ganyaozi.redis.RedisFactory">
+                <constructor-arg name="host" value="${redis.wechat.host}"/>
+                <constructor-arg name="master" value="${redis.wechat.master}"/>
+                <constructor-arg name="password" value="${redis.wechat.password}"/>
+                <constructor-arg name="poolConfig">
+                    <bean class="redis.clients.jedis.JedisPoolConfig">
+                        <property name="maxTotal" value="${redis.pool.maxTotal}"/>
+                        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+                        <property name="minIdle" value="${redis.pool.minIdle}"/>
+                        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+</beans> 

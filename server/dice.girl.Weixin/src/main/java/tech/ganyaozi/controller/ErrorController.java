@@ -16,13 +16,13 @@ public class ErrorController {
 
     @RequestMapping("/404")
     @ResponseBody
-    public String error404(HttpServletRequest request) {
+    public String error404() {
         return "/404";
     }
 
     @RequestMapping("/500")
     @ResponseBody
-    public String error500(HttpServletRequest request) {
+    public String error500() {
         return "/500";
     }
 }
