@@ -1,12 +1,16 @@
 package tech.ganyaozi.service.wechat;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.http.message.BasicNameValuePair;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import tech.ganyaozi.bean.consts.WechatConsts;
+import tech.ganyaozi.redis.RedisService;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
@@ -36,7 +40,6 @@ public class AccessTokenService {
     private static final String RESPONSE_JS_API_TOKEN_NAME = "ticket";
     private static final String RESPONSE_ERR_CODE_NAME = "errcode";
 
-
     /**
      * access的过期时间，微信端最大值为7200s，该公众号默认5400s（90min）取一次
      */
@@ -52,7 +55,7 @@ public class AccessTokenService {
     private String appSecret;
 
     @Resource
-    private BlzServiceRedisService redisService;
+    private RedisService redisService;
 
     /**
      * 获取access token
@@ -81,16 +84,27 @@ public class AccessTokenService {
                 "||   Update ACCESS TOKEN                      !! ||\n" +
                 "===================================================\n");
 
-        String response = HttpUtils.httpGet(GET_ACCESS_TOKEN_URL,
-                new BasicNameValuePair(REQUEST_PARAM_GRANT_TYPE, GRANT_TYPE_VALUE)
-                , new BasicNameValuePair(REQUEST_PARAM_APP_ID, appId)
-                , new BasicNameValuePair(REQUEST_PARAM_APP_SECRET, appSecret));
+        String url = GET_ACCESS_TOKEN_URL +
+                "?" + REQUEST_PARAM_GRANT_TYPE + "=" + GRANT_TYPE_VALUE +
+                "&" + REQUEST_PARAM_APP_ID + "=" + appId +
+                "&" + REQUEST_PARAM_APP_SECRET + "=" + appSecret;
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        Request request = new Request.Builder()
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .url(url)
+                .get()
+                .build();
         String accessToken = null;
-        try {
-            JSONObject json = JSONObject.parseObject(response);
-            accessToken = json.getString(RESPONSE_ACCESS_TOKEN_NAME);
+        try (Response response = client.newCall(request).execute()) {
+            ResponseBody responseBody = response.body();
+            if (responseBody != null) {
+                String resStr = responseBody.string();
+                JSONObject json = JSONObject.parseObject(resStr);
+                accessToken = json.getString(RESPONSE_ACCESS_TOKEN_NAME);
+            }
         } catch (Exception e) {
-            loggerException.error("", e);
+            loggerException.error("refreshUserAccessToken exception!", e);
         }
         if (accessToken != null) {
             redisService.forString().opsForValue().set(ACCESS_TOKEN_REDIS_KEY, accessToken, ACCESS_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
@@ -103,7 +117,7 @@ public class AccessTokenService {
     /**
      * 获取access token
      */
-    String getJsApiTicket() {
+   public String getJsApiTicket() {
         String ticket = redisService.forString().opsForValue().get(JS_API_TICKET_REDIS_KEY);
         if (ticket == null) {
             if (!updateJsApiTicket()) {
@@ -126,25 +140,36 @@ public class AccessTokenService {
         String accessToken = getAccessToken();
         String jsApiTicket = null;
         Integer expiresIn = null;
-        String response = HttpUtils.httpGet(GET_JS_API_URL,
-                new BasicNameValuePair(REQUEST_PARAM_GET_TICKET_TYPE, GET_TICKET_TYPE_VALUE),
-                new BasicNameValuePair(RESPONSE_ACCESS_TOKEN_NAME, accessToken));
-        try {
-            JSONObject json = JSONObject.parseObject(response);
-            if (json.getInteger(RESPONSE_ERR_CODE_NAME) != 0) {
-                int errCode = json.getIntValue(RESPONSE_ERR_CODE_NAME);
-                if (errCode == WechatConsts.WechatErrorCode.BAD_ACCESS_TOKEN.getValue()
-                        || errCode == WechatConsts.WechatErrorCode.INVALID_ACCESS_TOKEN.getValue()) {
-                    // access token 失效，刷新
-                    updateAccessToken();
+        String url = GET_JS_API_URL +
+                "?" + REQUEST_PARAM_GET_TICKET_TYPE + "=" + GET_TICKET_TYPE_VALUE +
+                "&" + RESPONSE_ACCESS_TOKEN_NAME + "=" + accessToken;
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        Request request = new Request.Builder()
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .url(url)
+                .get()
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            ResponseBody responseBody = response.body();
+            if (responseBody != null) {
+                String resStr = responseBody.string();
+                JSONObject json = JSONObject.parseObject(resStr);
+                if (json.getInteger(RESPONSE_ERR_CODE_NAME) != 0) {
+                    int errCode = json.getIntValue(RESPONSE_ERR_CODE_NAME);
+                    if (errCode == WechatConsts.WechatErrorCode.BAD_ACCESS_TOKEN.getValue()
+                            || errCode == WechatConsts.WechatErrorCode.INVALID_ACCESS_TOKEN.getValue()) {
+                        // access token 失效，刷新
+                        updateAccessToken();
+                    }
+                    loggerException.error("{}", json);
+                    return false;
                 }
-                loggerException.error("{}", json);
-                return false;
+                jsApiTicket = json.getString(RESPONSE_JS_API_TOKEN_NAME);
+                expiresIn = json.getInteger("expires_in");
             }
-            jsApiTicket = json.getString(RESPONSE_JS_API_TOKEN_NAME);
-            expiresIn = json.getInteger("expires_in");
         } catch (Exception e) {
-            loggerException.error("", e);
+            loggerException.error("refreshUserAccessToken exception!", e);
         }
         if (expiresIn == null) {
             expiresIn = ACCESS_TOKEN_EXPIRE_TIME;

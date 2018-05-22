@@ -66,7 +66,9 @@ public class WechatApiService {
                     ex.printStackTrace();
                     logger.warn("post request exception: " + ex);
                 }
-                if (ret != null) break;
+                if (ret != null) {
+                    break;
+                }
             }
 
             if (ret == null) {
