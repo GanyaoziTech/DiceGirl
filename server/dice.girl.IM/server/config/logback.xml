@@ -2,7 +2,7 @@
 <!--每隔60秒扫描一次日志配置-->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="LOG_HOME" value="./log" />
+    <property name="LOG_HOME" value="/var/log/dice-girl" />
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
