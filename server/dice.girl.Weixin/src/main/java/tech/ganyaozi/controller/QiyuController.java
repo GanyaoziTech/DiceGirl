@@ -39,7 +39,7 @@ public class QiyuController {
                                @RequestParam(value = "eventType") String eventType,
                                @RequestBody String postData) {
         try {
-            logger.debug("receive qiyu: " + eventType + " content: " + postData);
+            logger.info("receive qiyu: {},  content: {}", eventType, postData);
             return qiyuMessageReceiveService.onReceive(time, checksum, eventType, postData);
         } catch (Throwable e) {
             logger.warn("onUnicornMsg error: " + e);

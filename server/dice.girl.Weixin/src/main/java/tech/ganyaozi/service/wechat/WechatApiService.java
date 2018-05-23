@@ -30,6 +30,7 @@ public class WechatApiService {
     private EmojiConverter emojiConverter;
 
     public void replyText(String openId, String text) {
+        logger.info("reply text to user : {}, text : {} ", openId, text);
         if (TextUtils.isEmpty(text)) {
             return;
         }
