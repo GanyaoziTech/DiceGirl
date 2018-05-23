@@ -321,6 +321,8 @@ public class QiyuApiService {
         String checksum = QiyuPushCheckSum.encode(appSecret, md5, time);
         url = url + "?appKey=" + appKey + "&time=" + time + "&checksum=" + checksum;
 
+        loggerException.info(" post json to qiyu url : {}, content :{}", url,content);
+
         return HttpClientPool.getInstance().postJson(url, content);
     }
 }

@@ -1,5 +1,7 @@
 package tech.ganyaozi.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ganyaozi.bean.message.TextWeixinMessage;
@@ -14,6 +16,8 @@ import java.util.Map;
  **/
 @Service
 public class DispatcherService {
+
+    private static final Logger logger = LoggerFactory.getLogger(DispatcherService.class);
 
     private final QiyuApiService qiyuApiService;
 
@@ -43,6 +47,8 @@ public class DispatcherService {
             textMessage.setFromUserName(toUserName);
             textMessage.setCreateTime(new Date());
             textMessage.setMsgType(WechatMessageConvertUtil.RESP_MESSAGE_TYPE_TEXT);
+
+            logger.info(" dispatch message : {} ", xmlText);
 
             switch (msgType) {
                 // 文本消息
