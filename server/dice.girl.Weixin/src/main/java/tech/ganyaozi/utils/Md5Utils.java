@@ -37,7 +37,7 @@ public class Md5Utils {
     public static String md5(String input, int bit) {
         try {
             MessageDigest md = MessageDigest.getInstance(System.getProperty(
-                    "Md5Utils.algorithm", "Md5Utils"));
+                    "Md5Utils.algorithm", "Md5"));
             if (bit == BIT_LENGTH_16) {
                 return bytesToHex(md.digest(input.getBytes("utf-8")))
                         .substring(8, 24);

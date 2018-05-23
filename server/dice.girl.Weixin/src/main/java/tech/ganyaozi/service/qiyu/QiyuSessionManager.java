@@ -1,6 +1,9 @@
 package tech.ganyaozi.service.qiyu;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import tech.ganyaozi.bean.qiyu.CommonResult;
 import tech.ganyaozi.bean.qiyu.Session;
 import tech.ganyaozi.service.wechat.WechatApiService;
 
@@ -15,6 +18,8 @@ import java.util.Map;
  */
 @Service
 public class QiyuSessionManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(QiyuSessionManager.class);
 
     @Resource
     private WechatApiService wechatApiService;
@@ -61,7 +66,10 @@ public class QiyuSessionManager {
             List<Session.SatisfactionEntry> entries = session.getEvaluationModel().getList();
             if (index > 0 && index <= entries.size()) {
                 Session.SatisfactionEntry entry = entries.get(index - 1);
-                qiyuApiService.evaluate(openId, session.getSessionId(), entry.getValue());
+                CommonResult result = qiyuApiService.evaluate(openId, session.getSessionId(), entry.getValue());
+
+                logger.info(" evaluate result :{}",result);
+
                 waitingEvaluation.remove(session.getUid());
 
                 wechatApiService.replyText(openId, "谢谢，您的评价为：" + entry.getName() + "！");

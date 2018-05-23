@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ganyaozi.bean.message.TextWeixinMessage;
+import tech.ganyaozi.bean.qiyu.CommonResult;
 import tech.ganyaozi.service.qiyu.QiyuApiService;
 import tech.ganyaozi.utils.WechatMessageConvertUtil;
 
@@ -53,7 +54,8 @@ public class DispatcherService {
             switch (msgType) {
                 // 文本消息
                 case WechatMessageConvertUtil.REQ_MESSAGE_TYPE_TEXT:
-                    qiyuApiService.sendTextMessage(fromUserName,xmlText);
+                    CommonResult result = qiyuApiService.sendTextMessage(fromUserName, xmlText);
+                    logger.info("result : {}" ,result);
                     //等待七鱼的返回消息，这里的返回值就写空字符串
                     respContent = "";
                     break;

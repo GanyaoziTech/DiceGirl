@@ -87,7 +87,7 @@ public class QiyuApiService {
             }
             return result;
         } else {
-            loggerException.error("fail to call apply staff !");
+            loggerException.error("fail to call apply staff ! res ： {}" ,res);
         }
         return null;
     }
@@ -324,5 +324,14 @@ public class QiyuApiService {
         loggerException.info(" post json to qiyu url : {}, content :{}", url,content);
 
         return HttpClientPool.getInstance().postJson(url, content);
+    }
+
+    public static void main(String[] args) {
+        String content = "{\"content\":\"<xml><ToUserName><![CDATA[gh_dd1201cdf810]]></ToUserName>\\n<FromUserName><![CDATA[olMqvv504p_JjRxTDJRPDUuizuS0]]></FromUserName>\\n<CreateTime>1527063905</CreateTime>\\n<MsgType><![CDATA[text]]></MsgType>\\n<Content><![CDATA[qweqe]]></Content>\\n<MsgId>6558689531367232034</MsgId>\\n</xml>\",\"msgType\":\"TEXT\",\"staffId\":0,\"timeStamp\":0,\"uid\":\"olMqvv504p_JjRxTDJRPDUuizuS0\"}";
+        String md5 = Md5Utils.md5(content);
+        Long time = 1527063906L;
+        String appSecret = "56DBA0ADF9E047D69FF9216E755CE4DC";
+        String checksum = QiyuPushCheckSum.encode(appSecret, md5, time);
+        System.out.printf("checksum = : %s", checksum);
     }
 }
