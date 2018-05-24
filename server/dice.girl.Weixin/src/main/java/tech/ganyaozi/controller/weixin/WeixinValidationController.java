@@ -45,13 +45,16 @@ public class WeixinValidationController {
 
     @RequestMapping(value = "/receive", method = RequestMethod.GET)
     @ResponseBody
-    public String verify(HttpServletResponse response, String signature, Long timestamp, String nonce, String echostr) throws IOException, AesException {
+    public String verify(HttpServletResponse response, String signature, String timestamp, String nonce, String echostr) throws IOException, AesException {
+
+        logger.info("signature : {} \n timestamp : {} \nnonce : {} \nechostr : {} \n ", signature, timestamp, nonce, echostr);
+
         // 将token、timestamp、nonce三个参数进行字典序排序
         if (StringUtils.isBlank(signature)) {
             logger.error("cannot get signature");
             return "cannot get signature";
         }
-        if (timestamp == null || timestamp < 0) {
+        if (StringUtils.isEmpty(timestamp) || !StringUtils.isNumeric(timestamp)) {
             logger.error("cannot get timestamp");
             return "cannot get timestamp";
         }
@@ -67,19 +70,17 @@ public class WeixinValidationController {
             logger.error("cannot get echostr");
             return "cannot get echostr";
         }
-        if (wxBizMsgCrypt == null) {
-            initWXMsgCrypt();
-            if (wxBizMsgCrypt == null) {
-                return null;
-            }
-        }
-        if (wxBizMsgCrypt.checkSignature(signature, String.valueOf(timestamp), nonce)) {
+        if (checkSignature(signature, timestamp, nonce)) {
             response.getWriter().print(echostr);
         }
         return null;
     }
 
     private void initWXMsgCrypt() throws AesException {
+        if (StringUtils.isEmpty(encodingAesKey) || StringUtils.isEmpty(token)) {
+            logger.error("try to init WXMsgCrypt, but encodingAesKey is : {}, and token is {}", encodingAesKey, token);
+            return;
+        }
         wxBizMsgCrypt = new WXBizMsgCrypt(token, encodingAesKey, appId);
     }
 
