@@ -19,7 +19,7 @@ import java.io.PrintWriter;
 /**
  * @author Derek.P.Dai[dp419936514@gmail.com]
  **/
-@RequestMapping("/weixin/")
+@RequestMapping("/wechat/")
 @Controller
 public class WeixinValidationController {
     private static final Logger logger = LoggerFactory.getLogger(WeixinValidationController.class);
@@ -31,11 +31,11 @@ public class WeixinValidationController {
     private WXBizMsgCrypt wxBizMsgCrypt;
 
 
-    @Value("${weixin-token}")
+    @Value("${wechat-token}")
     private String token;
-    @Value("${weixin-encoding-aes-key}")
+    @Value("${wechat-encoding-aes-key}")
     private String encodingAesKey;
-    @Value("${weixin-app-id}")
+    @Value("${wechat-app-id}")
     private String appId;
 
     @Autowired

@@ -98,6 +98,7 @@ public class WXBizMsgCryptTest {
     }
 
     @Test
+    @Ignore
     public void testAesEncrypt2() {
         try {
             WXBizMsgCrypt pc = new WXBizMsgCrypt(token, encodingAesKey, appId);
