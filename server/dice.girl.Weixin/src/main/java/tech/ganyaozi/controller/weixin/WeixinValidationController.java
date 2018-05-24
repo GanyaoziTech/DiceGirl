@@ -1,6 +1,7 @@
 package tech.ganyaozi.controller.weixin;
 
 import com.qq.weixin.mp.aes.AesException;
+import com.qq.weixin.mp.aes.SHA1;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tech.ganyaozi.service.DispatcherService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,9 +23,8 @@ import java.io.PrintWriter;
 @Controller
 public class WeixinValidationController {
     private static final Logger logger = LoggerFactory.getLogger(WeixinValidationController.class);
-
-    private final DispatcherService service;
     private static final String DEFAULT_ENCRYPT = "aes";
+    private final DispatcherService service;
     /**
      * 加密的辅助类
      */
@@ -88,38 +87,81 @@ public class WeixinValidationController {
     @ResponseBody
     public String validate(HttpServletResponse response
             , @RequestBody String postData
-            , @RequestParam(value = "encrypt_type") String encryptType
-            , @RequestParam(value = "msg_signature") String msgSignature
+            , @RequestParam(value = "encrypt_type", required = false) String encryptType
+            , @RequestParam(value = "msg_signature", required = false) String msgSignature
             , String signature
             , String timestamp
-            , String nonce) throws AesException {
-        if (wxBizMsgCrypt == null) {
-            initWXMsgCrypt();
-            if (wxBizMsgCrypt == null) {
-                return null;
-            }
-        }
+            , String nonce) {
         logger.info("\nraw : \n{} ", postData);
         try (PrintWriter out = response.getWriter()) {
-            if (wxBizMsgCrypt.checkSignature(signature, timestamp, nonce)) {
-                if (DEFAULT_ENCRYPT.equals(encryptType)) {
+            if (checkSignature(signature, timestamp, nonce)) {
+                if (StringUtils.equals(DEFAULT_ENCRYPT,encryptType)) {
+                    //内容加密，调用解密模块
+                    //初始化解密器
+                    if (wxBizMsgCrypt == null) {
+                        initWXMsgCrypt();
+                        if (wxBizMsgCrypt == null) {
+                            //微信服务器要求，必须对所有消息进行反馈，即使是处理失败。
+                            //此处返回success，使得聊天内容不会报错。
+                            out.print("success");
+                            logger.error("try to decrypt message , but fail to innit WxBizMsgCrypt");
+                            return null;
+                        }
+                    }
                     String xmlText = wxBizMsgCrypt.decryptMsg(msgSignature, timestamp, nonce, postData);
-                    logger.info(xmlText);
+                    logger.info("xmlText: {}", xmlText);
                     String respXml = service.processRequest(xmlText);
+                    //对空白消息的特殊处理，直接返回空字符串
+                    if (respXml == null) {
+                        out.print("success");
+                    }
                     respXml = wxBizMsgCrypt.encryptMsg(respXml, timestamp, nonce);
-                    logger.info(respXml);
+                    logger.error("response : {}", respXml);
                     out.print(respXml);
                 } else {
+                    logger.info("encrypt_type : {} ", encryptType);
                     String respXml = service.processRequest(postData);
+                    //对空白消息的特殊处理，直接返回空字符串
+                    if (respXml == null) {
+                        out.print("success");
+                        return null;
+                    }
                     out.print(respXml);
                 }
             } else {
+                logger.error("check signature fail");
                 out.print("check signature fail");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 检查签名是否正确
+     *
+     * @param signature 签名
+     * @param timestamp 时间戳
+     * @param nonce     随机字符串
+     * @throws AesException 密钥初始化时抛出
+     */
+    private boolean checkSignature(String signature, String timestamp, String nonce) throws AesException {
+        if (wxBizMsgCrypt == null) {
+            initWXMsgCrypt();
+            if (wxBizMsgCrypt == null) {
+                // 未加密模式
+                logger.info("receive check signature message, but encodingAes key is null ,try to use plain text mode");
+                if (StringUtils.equals(signature, SHA1.getSHA1(token, String.valueOf(timestamp), nonce))) {
+                    return true;
+                } else {
+                    logger.error("check signature fail !");
+                    return false;
+                }
+            }
+        }
+        //加密模式
+        return wxBizMsgCrypt.checkSignature(signature, String.valueOf(timestamp), nonce);
     }
 
 
