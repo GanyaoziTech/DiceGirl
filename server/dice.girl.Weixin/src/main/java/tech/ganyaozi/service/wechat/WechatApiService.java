@@ -1,15 +1,16 @@
 package tech.ganyaozi.service.wechat;
 
 import com.alibaba.fastjson.JSONObject;
+import okhttp3.*;
 import org.apache.http.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ganyaozi.utils.EmojiConverter;
-import tech.ganyaozi.utils.HttpClientPool;
+import tech.ganyaozi.utils.OkHttpUtils;
 
-import javax.annotation.Resource;
-import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static tech.ganyaozi.bean.consts.WechatConsts.WX_MSG_URL;
 
@@ -20,17 +21,31 @@ import static tech.ganyaozi.bean.consts.WechatConsts.WX_MSG_URL;
  **/
 @Service
 public class WechatApiService {
-    private static final Logger logger = LoggerFactory.getLogger(WechatApiService.class);
+
+    private static final Logger loggerException = LoggerFactory.getLogger(WechatApiService.class);
+    private static final Logger loggerBusiness = LoggerFactory.getLogger("business");
+
     private static final String TAG_TO_USER = "touser";
     private static final String TAG_MSG_TYPE = "msgtype";
-    private static final int DEFAULT_RETRY_TIMES = 2;
-    @Resource
-    private AccessTokenService accessTokenService;
-    @Resource
-    private EmojiConverter emojiConverter;
 
+
+    private final AccessTokenService accessTokenService;
+    private final EmojiConverter emojiConverter;
+
+    @Autowired
+    public WechatApiService(AccessTokenService accessTokenService, EmojiConverter emojiConverter) {
+        this.accessTokenService = accessTokenService;
+        this.emojiConverter = emojiConverter;
+    }
+
+    /**
+     * 回复用户消息，当且仅当是服务号的时候可以使用
+     *
+     * @param openId open id
+     * @param text   回复内容
+     */
     public void replyText(String openId, String text) {
-        logger.info("reply text to user : {}, text : {} ", openId, text);
+        loggerBusiness.info("reply text to user : {}, text : {} ", openId, text);
         if (TextUtils.isEmpty(text)) {
             return;
         }
@@ -40,7 +55,6 @@ public class WechatApiService {
     private void sendText(String openId, String text) {
         JSONObject body = new JSONObject();
         body.put("content", emojiConverter.convertNim(text));
-
         JSONObject json = new JSONObject();
         json.put(TAG_TO_USER, openId);
         json.put(TAG_MSG_TYPE, "text");
@@ -48,37 +62,30 @@ public class WechatApiService {
 
         String sendStr = json.toJSONString();
 
-        replyMessage(sendStr, "replyText");
+        replyMessage(sendStr);
     }
 
     private String msgUrl() {
         return WX_MSG_URL + "?access_token=" + accessTokenService.getAccessToken();
     }
 
-    private void replyMessage(String sendStr, String func) {
+    private void replyMessage(String sendStr) {
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), sendStr);
 
-        String msgUrl = msgUrl();
-        try {
-            String ret = null;
-            for (int i = 0; i <= DEFAULT_RETRY_TIMES; i++) {
-                try {
-                    ret = HttpClientPool.getInstance().post(msgUrl, sendStr);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    logger.warn("post request exception: " + ex);
-                }
-                if (ret != null) {
-                    break;
-                }
-            }
+        Request request = new Request.Builder()
+                .url(msgUrl())
+                .post(body)
+                .build();
 
-            if (ret == null) {
-                logger.warn(String.format("[wx] failed and retry !! sendStr = %s", sendStr));
+        try (Response response = OkHttpUtils.getClient().newCall(request).execute()) {
+            if (response != null) {
+                loggerBusiness.debug(String.format("url=%s, send=%s, ret=%s", msgUrl(), sendStr, response.toString()));
+            } else {
+                loggerBusiness.warn(String.format("[wx] failed and retry !! sendStr = %s", sendStr));
             }
-            logger.debug(String.format("[%s] url=%s, send=%s, ret=%s", func, msgUrl, sendStr, ret));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            logger.warn("replyMessage error: " + ex.toString());
+        } catch (Exception e) {
+            loggerException.warn("", e);
         }
+
     }
 }

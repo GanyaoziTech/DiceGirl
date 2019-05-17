@@ -1,0 +1,33 @@
+#### 配置中心 ###################
+spring:
+  #服务名称
+  application:
+    name: warframe-state-api
+    #环境
+  profiles:
+    active: dev
+
+#端口号
+server:
+  port: 12345
+
+#公开actuator所有的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: \*
+
+# warframe stat 相关的配置
+warframe-stat:
+  domain: https://api.warframestat.us/
+  api:
+    alerts: /alerts
+    cetus: /cetusCycle
+    conclave: /conclaveChallenges
+    constructionProgress: /constructionProgress
+    darvo: /dailyDeals
+    events: /events
+    fissures: /fissures
+    flashSales: /flashSales
+

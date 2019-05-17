@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import tech.ganyaozi.bean.consts.WechatConsts;
 import tech.ganyaozi.redis.RedisService;
+import tech.ganyaozi.utils.OkHttpUtils;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
@@ -88,7 +89,6 @@ public class AccessTokenService {
                 "?" + REQUEST_PARAM_GRANT_TYPE + "=" + GRANT_TYPE_VALUE +
                 "&" + REQUEST_PARAM_APP_ID + "=" + appId +
                 "&" + REQUEST_PARAM_APP_SECRET + "=" + appSecret;
-        OkHttpClient client = new OkHttpClient.Builder().build();
         Request request = new Request.Builder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
@@ -96,7 +96,7 @@ public class AccessTokenService {
                 .get()
                 .build();
         String accessToken = null;
-        try (Response response = client.newCall(request).execute()) {
+        try (Response response = OkHttpUtils.getClient().newCall(request).execute()) {
             ResponseBody responseBody = response.body();
             if (responseBody != null) {
                 String resStr = responseBody.string();
@@ -143,14 +143,13 @@ public class AccessTokenService {
         String url = GET_JS_API_URL +
                 "?" + REQUEST_PARAM_GET_TICKET_TYPE + "=" + GET_TICKET_TYPE_VALUE +
                 "&" + RESPONSE_ACCESS_TOKEN_NAME + "=" + accessToken;
-        OkHttpClient client = new OkHttpClient.Builder().build();
         Request request = new Request.Builder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .url(url)
                 .get()
                 .build();
-        try (Response response = client.newCall(request).execute()) {
+        try (Response response = OkHttpUtils.getClient().newCall(request).execute()) {
             ResponseBody responseBody = response.body();
             if (responseBody != null) {
                 String resStr = responseBody.string();

@@ -2,11 +2,8 @@ package tech.ganyaozi.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ganyaozi.bean.message.TextWeixinMessage;
-import tech.ganyaozi.bean.qiyu.CommonResult;
-import tech.ganyaozi.service.qiyu.QiyuApiService;
 import tech.ganyaozi.utils.WechatMessageConvertUtil;
 
 import java.util.Date;
@@ -20,15 +17,8 @@ public class DispatcherService {
 
     private static final Logger logger = LoggerFactory.getLogger(DispatcherService.class);
 
-    private final QiyuApiService qiyuApiService;
-
-    @Autowired
-    public DispatcherService(QiyuApiService qiyuApiService) {
-        this.qiyuApiService = qiyuApiService;
-    }
-
     public String processRequest(String xmlText) {
-    // xml格式的消息数据
+        // xml格式的消息数据
         String respXml = null;
         // 默认返回的文本消息内容
         String respContent = "未知的消息类型！";
@@ -54,8 +44,6 @@ public class DispatcherService {
             switch (msgType) {
                 // 文本消息
                 case WechatMessageConvertUtil.REQ_MESSAGE_TYPE_TEXT:
-                    CommonResult result = qiyuApiService.sendTextMessage(fromUserName, xmlText);
-                    logger.info("result : {}" ,result);
                     //等待七鱼的返回消息，这里的返回值就写空字符串
                     respContent = "";
                     break;

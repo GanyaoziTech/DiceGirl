@@ -2,7 +2,7 @@ app/PC_mock/target/
 server/IM/target/
 server/common/target/
 
-/.idea
+.idea/*
 /out/
 *.iml
 *.log

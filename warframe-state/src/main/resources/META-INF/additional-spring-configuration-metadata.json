@@ -1,0 +1,49 @@
+{
+  "properties": [
+    {
+      "name": "warframe-stat.domain",
+      "type": "java.lang.String",
+      "description": " warframe-stat.domain."
+    },
+    {
+      "name": "warframe-stat.api.alerts",
+      "type": "java.lang.String",
+      "description": "警报任务解析，目前只剩活动警报，如莲妈的恩赐."
+    },
+    {
+      "name": "warframe-stat.api.cetus",
+      "type": "java.lang.String",
+      "description": "希图斯状态."
+    },
+    {
+      "name": "warframe-stat.api.conclave",
+      "type": "java.lang.String",
+      "description": "武形秘仪挑战."
+    },
+    {
+      "name": "warframe-stat.api.constructionProgress",
+      "type": "java.lang.String",
+      "description": "巨人舰队和利刃豺狼舰队的建造进度."
+    },
+    {
+      "name": "warframe-stat.api.darvo",
+      "type": "java.lang.String",
+      "description": "Darvo的每日优惠(黑心)."
+    },
+    {
+      "name": "warframe-stat.api.events",
+      "type": "java.lang.String",
+      "description": "活动信息，比如巨人战舰活动，Events, such as Fomorian Attacks are included here."
+    },
+    {
+      "name": "warframe-stat.api.fissures",
+      "type": "java.lang.String",
+      "description": "虚空裂缝信息 Information about current Void Fissure missions."
+    },
+    {
+      "name": "warframe-stat.api.flashSales",
+      "type": "java.lang.String",
+      "description": "Darvo的热门商品 Popular Deals, discounts, featured deals.."
+    }
+  ]
+}

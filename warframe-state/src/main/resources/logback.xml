@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。-->
+<!--  scanPeriod="30 seconds"   设置每30秒自动扫描,若没有指定具体单位则以milliseconds为标准(单位:milliseconds, seconds, minutes or hours)  -->
+<!-- debug="false"当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <appender name="R" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/home/logs/warframe-state/exception.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/logs/app/exception.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>256MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp": "%d" ,
+                        "date":"%date{\"yyyy-MM-dd'T'HH:mm:ss,SSSZ\"}",
+                        "level": "%level",
+                        "thread": "%thread",
+                        "classname": "%class",
+                        "ndc":"%X",
+                        "methodname":"%M",
+                        "line_number": "%line",
+                        "message": "%msg",
+                        "throwable": "%xEx"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <appender name="business" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/home/logs/warframe-state/business.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/logs/app/business.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>256MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp": "%d" ,
+                        "date":"%date{\"yyyy-MM-dd'T'HH:mm:ss,SSSZ\"}",
+                        "level": "%level",
+                        "thread": "%thread",
+                        "classname": "%class",
+                        "ndc":"%X",
+                        "methodname":"%M",
+                        "line_number": "%line",
+                        "message": "%msg",
+                        "throwable": "%xEx"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%date][%-5level][%logger{5} %method:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- *********************************** loggers start ************************************* -->
+    <logger name="tech.ganyaozi" level="INFO" addtivity="true">
+        <appender-ref ref="business"/>
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="R"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
+
+
+
+

@@ -9,11 +9,12 @@ import okhttp3.ResponseBody;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ganyaozi.bean.WechatUserInfo;
 import tech.ganyaozi.redis.RedisService;
+import tech.ganyaozi.utils.OkHttpUtils;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -80,10 +81,14 @@ public class WechatUserInfoService {
      */
     private static final String REDIS_KEY_USER_SCOPE_PREFIX = "gs_wechat_user_scope_";
 
-    @Resource
-    private AccessTokenService accessTokenService;
-    @Resource
-    private RedisService redisService;
+    private final AccessTokenService accessTokenService;
+    private final RedisService redisService;
+
+    @Autowired
+    public WechatUserInfoService(AccessTokenService accessTokenService, RedisService redisService) {
+        this.accessTokenService = accessTokenService;
+        this.redisService = redisService;
+    }
 
     /**
      * 根据用户跳转的code，获取用户授权access token
@@ -106,7 +111,6 @@ public class WechatUserInfoService {
                     + "&secret=" + accessTokenService.getAppSecret()
                     + "&grant_type=" + PARAM_NAME_GRANT_TYPE_CONVERT;
 
-            OkHttpClient client = new OkHttpClient.Builder().build();
             Request request = new Request.Builder()
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
@@ -114,7 +118,7 @@ public class WechatUserInfoService {
                     .get()
                     .build();
 
-            try (Response response = client.newCall(request).execute()) {
+            try (Response response = OkHttpUtils.getClient().newCall(request).execute()) {
                 ResponseBody responseBody = response.body();
                 if (responseBody != null) {
                     String resStr = responseBody.string();
@@ -148,7 +152,6 @@ public class WechatUserInfoService {
                 + "&appid=" + accessTokenService.getAppId()
                 + "&refresh_token=" + refreshToken;
 
-        OkHttpClient client = new OkHttpClient.Builder().build();
         Request request = new Request.Builder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
@@ -156,7 +159,7 @@ public class WechatUserInfoService {
                 .get()
                 .build();
 
-        try (Response response = client.newCall(request).execute()) {
+        try (Response response = OkHttpUtils.getClient().newCall(request).execute()) {
             ResponseBody responseBody = response.body();
             if (responseBody != null) {
                 String resStr = responseBody.string();
@@ -223,7 +226,7 @@ public class WechatUserInfoService {
                 wechatUserInfo = JSON.parseObject(resStr, WechatUserInfo.class);
 
                 // 微信过来的时间戳，是精确到秒的，要专门做转化
-                Long subscribeTime = JSONObject.parseObject(resStr).getLongValue("subscribe_time");
+                long subscribeTime = JSONObject.parseObject(resStr).getLongValue("subscribe_time");
                 if (subscribeTime != 0) {
                     wechatUserInfo.setSubscribeTime(new Date(subscribeTime * 1000));
                 }
