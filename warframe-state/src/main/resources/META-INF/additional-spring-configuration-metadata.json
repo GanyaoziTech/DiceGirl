@@ -26,7 +26,7 @@
       "description": "巨人舰队和利刃豺狼舰队的建造进度."
     },
     {
-      "name": "warframe-stat.api.darvo",
+      "name": "warframe-stat.api.dailyDeals",
       "type": "java.lang.String",
       "description": "Darvo的每日优惠(黑心)."
     },
@@ -44,6 +44,41 @@
       "name": "warframe-stat.api.flashSales",
       "type": "java.lang.String",
       "description": "Darvo的热门商品 Popular Deals, discounts, featured deals.."
+    },
+    {
+      "name": "warframe-stat.api.globalUpgrades",
+      "type": "java.lang.String",
+      "description": "Any current modifiers applied to all users, such as double drops."
+    },
+    {
+      "name": "warframe-stat.api.invasions",
+      "type": "java.lang.String",
+      "description": "Data on invasion missions, such as estimated completion time, rewards, etc."
+    },
+    {
+      "name": "warframe-stat.api.news",
+      "type": "java.lang.String",
+      "description": "Translated News items from the world state."
+    },
+    {
+      "name": "warframe-stat.api.nightwave",
+      "type": "java.lang.String",
+      "description": "The Current cycle and challenges of Nightwave, a battle-pass-esque rotation and challenge system."
+    },
+    {
+      "name": "warframe-stat.api.persistentEnemies",
+      "type": "java.lang.String",
+      "description": "Data about current acolytes attacking the Sol System."
+    },
+    {
+      "name": "warframe-stat.api.vallisCycle",
+      "type": "java.lang.String",
+      "description": "The current cycle of the Orb Vallis warm/cold cycle."
+    },
+    {
+      "name": "warframe-stat.api.voidTrader",
+      "type": "java.lang.String",
+      "description": "Information on the current Void Trader offerings, or when he will arrive."
     }
   ]
 }

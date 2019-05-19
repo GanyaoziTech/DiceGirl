@@ -19,6 +19,8 @@
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <dependencies>
@@ -79,6 +81,19 @@
             <artifactId>okhttp</artifactId>
             <version>3.14.1</version>
         </dependency>
+
+        <!--        Swagger    -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -94,6 +109,10 @@
     </dependencyManagement>
 
     <repositories>
+        <repository>
+            <id>aliyunmaven</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>

@@ -1,8 +1,6 @@
-package tech.ganyaozi.warframe.state.consts;
+package tech.ganyaozi.warframe.stat.consts;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -48,7 +46,7 @@ public class WarframeConst {
             return alias;
         }
 
-        public Platform parse(String alias){
+        public static Platform parse(String alias) {
             for (Platform platform : Platform.values()){
                 if (StringUtils.equalsIgnoreCase(platform.getAlias(),alias)){
                     return platform;

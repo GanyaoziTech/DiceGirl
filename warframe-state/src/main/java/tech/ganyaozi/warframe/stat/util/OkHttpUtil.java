@@ -1,4 +1,4 @@
-package tech.ganyaozi.warframe.state.util;
+package tech.ganyaozi.warframe.stat.util;
 
 
 import com.alibaba.fastjson.JSONArray;
@@ -7,8 +7,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
 
 import java.util.concurrent.TimeUnit;
@@ -19,8 +17,6 @@ import java.util.concurrent.TimeUnit;
  * @author derek.p.dai at 2019/5/17 15:51
  **/
 public class OkHttpUtil {
-
-    private static final Logger loggerException = LoggerFactory.getLogger(OkHttpUtil.class);
 
     private static final boolean RETRY_ON_FAIL = true;
 
@@ -50,23 +46,13 @@ public class OkHttpUtil {
     }
 
     @Nullable
-    public static JSONArray sendGetAsJsonArray(String url) {
-        try {
-            return JSONArray.parseArray(get(url));
-        } catch (Exception e) {
-            loggerException.warn("", e);
-        }
-        return null;
+    public static JSONArray sendGetAsJsonArray(String url) throws Exception {
+        return JSONArray.parseArray(get(url));
     }
 
     @Nullable
-    public static JSONObject sendGetAsJsonObject(String url) {
-        try {
-            return JSONObject.parseObject(get(url));
-        } catch (Exception e) {
-            loggerException.warn("", e);
-        }
-        return null;
+    public static JSONObject sendGetAsJsonObject(String url) throws Exception {
+        return JSONObject.parseObject(get(url));
     }
 
 }

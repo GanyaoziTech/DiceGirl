@@ -1,4 +1,4 @@
-package tech.ganyaozi.warframe.state;
+package tech.ganyaozi.warframe.stat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

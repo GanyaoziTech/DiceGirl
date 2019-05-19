@@ -2,14 +2,14 @@
 spring:
   #服务名称
   application:
-    name: warframe-state-api
+    name: warframe-stat-api
     #环境
   profiles:
     active: dev
 
 #端口号
 server:
-  port: 12345
+  port: 20350
 
 #公开actuator所有的端点
 management:
@@ -18,7 +18,7 @@ management:
       exposure:
         include: \*
 
-# warframe stat 相关的配置
+# Warframe Stat Api config
 warframe-stat:
   domain: https://api.warframestat.us/
   api:
@@ -26,8 +26,15 @@ warframe-stat:
     cetus: /cetusCycle
     conclave: /conclaveChallenges
     constructionProgress: /constructionProgress
-    darvo: /dailyDeals
+    dailyDeals: /dailyDeals
     events: /events
     fissures: /fissures
     flashSales: /flashSales
+    globalUpgrades: /globalUpgrades
+    invasions: /invasions
+    news: /news
+    nightwave: /nightwave
+    persistentEnemies: /persistentEnemies
+    vallisCycle: /vallisCycle
+    voidTrader: /voidTrader
 

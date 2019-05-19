@@ -78,7 +78,7 @@
         <appender-ref ref="business"/>
     </logger>
 
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="R"/>
         <appender-ref ref="STDOUT"/>
     </root>
