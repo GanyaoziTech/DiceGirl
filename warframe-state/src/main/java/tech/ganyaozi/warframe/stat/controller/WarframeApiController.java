@@ -54,7 +54,7 @@ public class WarframeApiController {
             return ApiResponse.newSuccess(nightWaveDTO);
         } catch (Exception e) {
             loggerException.error("", e);
-            return ApiResponse.builder().code(-1).msg(e.getMessage()).build();
+            return ApiResponse.newFail(e.getMessage());
         }
 
     }
