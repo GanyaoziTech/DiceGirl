@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Data
 @ApiModel("午夜电波警报")
-public class NightWaveDTO {
+public class NightwaveDTO {
 
     private String id;
 

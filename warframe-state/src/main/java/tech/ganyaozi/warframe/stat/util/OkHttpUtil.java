@@ -9,6 +9,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.lang.Nullable;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,7 +31,7 @@ public class OkHttpUtil {
                 .build();
     }
 
-    public static String get(String url) throws Exception {
+    public static String get(String url) throws IOException {
 
         Request request = new Request.Builder()
                 .header("content", "application/json")
@@ -46,12 +47,12 @@ public class OkHttpUtil {
     }
 
     @Nullable
-    public static JSONArray sendGetAsJsonArray(String url) throws Exception {
+    public static JSONArray sendGetAsJsonArray(String url) throws IOException {
         return JSONArray.parseArray(get(url));
     }
 
     @Nullable
-    public static JSONObject sendGetAsJsonObject(String url) throws Exception {
+    public static JSONObject sendGetAsJsonObject(String url) throws IOException {
         return JSONObject.parseObject(get(url));
     }
 

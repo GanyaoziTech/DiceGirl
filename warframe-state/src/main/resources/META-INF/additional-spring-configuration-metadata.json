@@ -79,6 +79,16 @@
       "name": "warframe-stat.api.voidTrader",
       "type": "java.lang.String",
       "description": "Information on the current Void Trader offerings, or when he will arrive."
+    },
+    {
+      "name": "spring.tomcat.uri-encoding",
+      "type": "java.lang.String",
+      "description": "Description for spring.tomcat.uri-encoding."
+    },
+    {
+      "name": "warframe-stat.api.sortie",
+      "type": "java.lang.String",
+      "description": "本日突击 Data about the missions for the current sortie."
     }
   ]
 }

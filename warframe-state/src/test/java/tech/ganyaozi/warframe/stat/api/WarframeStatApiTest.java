@@ -1,6 +1,7 @@
 package tech.ganyaozi.warframe.stat.api;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tech.ganyaozi.warframe.stat.consts.WarframeConst;
-import tech.ganyaozi.warframe.stat.dto.NightWaveDTO;
+import tech.ganyaozi.warframe.stat.dto.NightwaveDTO;
+
+import java.util.Objects;
 
 import static org.junit.Assert.fail;
 
@@ -91,7 +94,7 @@ public class WarframeStatApiTest {
         JSONObject raw = warframeStatApi.getNightWave(defaultPlatform);
         handleResult(raw);
 
-        NightWaveDTO nightWaveDTO = JSON.parseObject(raw.toString(), NightWaveDTO.class);
+        NightwaveDTO nightWaveDTO = JSON.parseObject(raw.toString(), NightwaveDTO.class);
         loggerException.info("Before : {} ", nightWaveDTO);
     }
 
@@ -110,9 +113,20 @@ public class WarframeStatApiTest {
         handleResult(warframeStatApi.getVoidTrader(defaultPlatform));
     }
 
+    @Test
+    public void getSortie() {
+        handleResult(warframeStatApi.getSortie(defaultPlatform));
+    }
+
 
     private void handleResult(Object result) {
         if (result == null) {
+            fail();
+        }
+        if (result instanceof JSONObject && Objects.equals(result, new JSONObject())) {
+            fail();
+        }
+        if (result instanceof JSONArray && Objects.equals(result, new JSONArray())) {
             fail();
         }
         loggerException.info("{}", result);

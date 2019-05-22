@@ -43,6 +43,7 @@ public class WarframeStatApi {
     private String persistentEnemies;
     private String vallisCycle;
     private String voidTrader;
+    private String sortie;
 
     @Autowired
     public WarframeStatApi(WarframeConst constant) {
@@ -193,6 +194,10 @@ public class WarframeStatApi {
      */
     public JSONObject getVoidTrader(WarframeConst.Platform platform) {
         return sendGetAsJsonObject(platform, voidTrader);
+    }
+
+    public JSONObject getSortie(WarframeConst.Platform platform) {
+        return sendGetAsJsonObject(platform, sortie);
     }
 
     private JSONArray sendGetAsJsonArray(WarframeConst.Platform platform, String path) {
