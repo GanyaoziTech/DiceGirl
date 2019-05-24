@@ -15,9 +15,6 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import tech.ganyaozi.warframe.stat.util.TranslationDictionary;
-
-import java.io.IOException;
 
 /**
  * @author jv190
@@ -57,47 +54,5 @@ public class WarframeStateApplication {
                 .version("1.0")
                 .build();
     }
-
-    @Bean(name = "nightwaveDictionary")
-    public TranslationDictionary nightwaveDictionary() throws IOException {
-        return new TranslationDictionary("NightWave");
-    }
-
-    @Bean(name = "commonDictionary")
-    public TranslationDictionary commonDictionary() throws IOException {
-        return new TranslationDictionary("Dict");
-    }
-
-
-    @Bean(name = "alertDictionary")
-    public TranslationDictionary alertDictionary() throws IOException {
-        return new TranslationDictionary("Alert");
-    }
-
-    @Bean(name = "invasionDictionary")
-    public TranslationDictionary invasionDictionary() throws IOException {
-        return new TranslationDictionary("Invasion");
-    }
-
-    @Bean(name = "modifierDictionary")
-    public TranslationDictionary modifierDictionary() throws IOException {
-        return new TranslationDictionary("Modifier");
-    }
-
-    @Bean(name = "relicDictionary")
-    public TranslationDictionary relicDictionary() throws IOException {
-        return new TranslationDictionary("Relic");
-    }
-
-    @Bean(name = "rivenDictionary")
-    public TranslationDictionary rivenDictionary() throws IOException {
-        return new TranslationDictionary("Riven");
-    }
-
-    @Bean(name = "saleDictionary")
-    public TranslationDictionary saleDictionary() throws IOException {
-        return new TranslationDictionary("Sale");
-    }
-
 
 }

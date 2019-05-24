@@ -1,7 +1,6 @@
 package tech.ganyaozi.warframe.stat.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,11 +17,9 @@ import tech.ganyaozi.warframe.stat.dto.FissureDTO;
 import tech.ganyaozi.warframe.stat.dto.NightwaveDTO;
 import tech.ganyaozi.warframe.stat.dto.SortieDTO;
 import tech.ganyaozi.warframe.stat.util.ApiResponse;
-import tech.ganyaozi.warframe.stat.util.TranslationDictionary;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Objects;
 
 import static tech.ganyaozi.warframe.stat.util.ApiResponse.newFail;
 import static tech.ganyaozi.warframe.stat.util.ApiResponse.newSuccess;
@@ -40,12 +37,6 @@ public class WarframeApiController {
 
     @Resource
     private WarframeStatApi warframeStatApi;
-    @Resource
-    private TranslationDictionary nightwaveDictionary;
-    @Resource
-    private TranslationDictionary commonDictionary;
-    @Resource
-    private TranslationDictionary modifierDictionary;
 
 
     @GetMapping("/nightwave")
@@ -55,19 +46,7 @@ public class WarframeApiController {
         try {
             WarframeConst.Platform p = WarframeConst.Platform.parse(platform);
             JSONObject resultJson = warframeStatApi.getNightWave(p);
-
-            NightwaveDTO nightWaveDTO = JSON.parseObject(resultJson.toString(), NightwaveDTO.class);
-
-            //翻译挑战的标题和描述
-            if (nightWaveDTO.getActiveChallenges() != null) {
-                nightWaveDTO.getActiveChallenges().stream()
-                        .filter(Objects::nonNull)
-                        .forEach(challenge -> {
-                            challenge.setDesc(nightwaveDictionary.translate(challenge.getDesc()));
-                            challenge.setTitle(nightwaveDictionary.translate(challenge.getTitle()));
-                        });
-            }
-            return ApiResponse.newSuccess(nightWaveDTO);
+            return ApiResponse.newSuccess(JSON.parseObject(resultJson.toString(), NightwaveDTO.class));
         } catch (Exception e) {
             loggerException.error("", e);
             return ApiResponse.newFail(e.getMessage());
@@ -80,24 +59,7 @@ public class WarframeApiController {
                                    @RequestParam(defaultValue = "pc") String platform) {
         try {
             WarframeConst.Platform p = WarframeConst.Platform.parse(platform);
-            JSONArray resultJson = warframeStatApi.getFissures(p);
-
-            List<FissureDTO> list = JSON.parseArray(resultJson.toString(), FissureDTO.class);
-
-            list.stream()
-                    .filter(Objects::nonNull)
-                    .forEach(fissureDTO -> {
-                        try {
-                            //星球节点名称
-                            String node = fissureDTO.getNode();
-                            String planetEN = node.substring(node.indexOf("(") + 1, node.indexOf(")"));
-                            fissureDTO.setNode(node.replace(planetEN, commonDictionary.translate(planetEN)));
-                            //任务类型
-                            fissureDTO.setMissionType(commonDictionary.translate(fissureDTO.getMissionType()));
-                        } catch (Exception e) {
-                            loggerException.error("", e);
-                        }
-                    });
+            List<FissureDTO> list = JSON.parseArray(warframeStatApi.getFissures(p).toString(), FissureDTO.class);
             return newSuccess(list);
         } catch (Exception e) {
             loggerException.error("", e);
@@ -112,29 +74,7 @@ public class WarframeApiController {
         try {
             WarframeConst.Platform p = WarframeConst.Platform.parse(platform);
             JSONObject resultJson = warframeStatApi.getSortie(p);
-
-            SortieDTO sortieDTO = JSON.parseObject(resultJson.toString(), SortieDTO.class);
-            if (sortieDTO != null && sortieDTO.getVariants() != null) {
-                sortieDTO.getVariants().stream()
-                        .filter(Objects::nonNull)
-                        .forEach(variant -> {
-                            try {
-                                //星球节点名称
-                                String node = variant.getNode();
-                                String planetEN = node.substring(node.indexOf("(") + 1, node.indexOf(")"));
-                                variant.setNode(node.replace(planetEN, commonDictionary.translate(planetEN)));
-                                //强化类型
-                                variant.setModifier(modifierDictionary.translate(variant.getModifier()));
-                                //强化类型描述
-                                variant.setModifierDescription(modifierDictionary.translate(variant.getModifierDescription()));
-                                //任务类型
-                                variant.setMissionType(commonDictionary.translate(variant.getMissionType()));
-                            } catch (Exception e) {
-                                loggerException.error("", e);
-                            }
-                        });
-            }
-            return newSuccess(sortieDTO);
+            return newSuccess(JSON.parseObject(resultJson.toString(), SortieDTO.class));
         } catch (Exception e) {
             loggerException.error("", e);
             return newFail(e.getMessage(), null);

@@ -2,8 +2,10 @@ package tech.ganyaozi.warframe.stat.dto;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import tech.ganyaozi.warframe.stat.translate.serializer.NightwaveSerializer;
 
 import java.util.Date;
 import java.util.List;
@@ -52,8 +54,10 @@ public class NightwaveDTO {
 
         private Boolean isElite;
 
+        @JSONField(serializeUsing = NightwaveSerializer.class)
         private String title;
 
+        @JSONField(serializeUsing = NightwaveSerializer.class)
         private String desc;
 
         private Integer reputation;

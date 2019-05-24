@@ -1,4 +1,4 @@
-package tech.ganyaozi.warframe.stat.util;
+package tech.ganyaozi.warframe.stat.translate;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -70,7 +70,5 @@ public class TranslationDictionary {
                 JSONObject json = (JSONObject) obj;
                 dictionary.put(json.getString("en"), json.getString("zh"));
             });
-
     }
-
 }

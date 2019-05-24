@@ -1,7 +1,9 @@
 package tech.ganyaozi.warframe.stat.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import tech.ganyaozi.warframe.stat.translate.serializer.CommonSerializer;
 
 import java.util.Date;
 
@@ -12,12 +14,14 @@ import java.util.Date;
 @ApiModel
 public class FissureDTO {
 
+    @JSONField(serializeUsing = CommonSerializer.class)
     private String node;
 
     private Boolean expired;
 
     private String eta;
 
+    @JSONField(serializeUsing = CommonSerializer.class)
     private String missionType;
 
     private String tier;
@@ -30,7 +34,7 @@ public class FissureDTO {
 
     private Date expiry;
 
-    private String activition;
+    private String activation;
 
 }
 
