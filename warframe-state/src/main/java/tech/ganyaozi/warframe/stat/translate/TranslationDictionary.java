@@ -23,7 +23,7 @@ public class TranslationDictionary {
     /**
      * file path pattern
      */
-    private static final String FILE_PATTERN = "/lexicon/WF_%s.json";
+    private static final String FILE_PATTERN = "classpath:lexicon/WF_%s.json";
 
     /**
      * EN to zhCN map
