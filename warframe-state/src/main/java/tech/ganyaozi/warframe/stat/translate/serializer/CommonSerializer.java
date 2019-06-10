@@ -25,7 +25,7 @@ public class CommonSerializer implements ObjectSerializer {
             }
             //星球节点名称
             String planetEN = node.substring(node.indexOf("(") + 1, node.indexOf(")"));
-            serializer.write(node.replace(planetEN, TranslationUtils.translateCommon(planetEN)));
+            serializer.write(node.replace(planetEN, TranslationUtils.translate(TranslationUtils.DictionaryName.COMMON,planetEN)));
         }else{
             String str = (String) object;
             if (StringUtils.isEmpty(str)) {
@@ -33,7 +33,7 @@ public class CommonSerializer implements ObjectSerializer {
                 return;
             }
             //星球节点名称
-            serializer.write(TranslationUtils.translateCommon(str));
+            serializer.write(TranslationUtils.translate(TranslationUtils.DictionaryName.COMMON,str));
         }
     }
 }

@@ -18,7 +18,7 @@ public class ModifierSerializer implements ObjectSerializer  {
             serializer.write("");
             return;
         }
-        //星球节点名称
-        serializer.write(TranslationUtils.translateModifier(str));
+        //强化词缀
+        serializer.write(TranslationUtils.translate(TranslationUtils.DictionaryName.MODIFIER,str));
     }
 }

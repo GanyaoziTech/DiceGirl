@@ -19,7 +19,7 @@ public class NightwaveSerializer implements ObjectSerializer {
                 serializer.write("");
                 return;
             }
-            //星球节点名称
-            serializer.write(TranslationUtils.translateNightwave(str));
+            //午夜电波任务描述
+            serializer.write(TranslationUtils.translate(TranslationUtils.DictionaryName.NIGHT_WAVE,str));
     }
 }

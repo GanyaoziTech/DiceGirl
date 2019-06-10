@@ -5,11 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ResourceUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
@@ -31,7 +29,7 @@ public class TranslationDictionary {
     private HashMap<String, String> dictionary = new HashMap<>();
 
     public TranslationDictionary(String dictionaryAlias) throws IOException {
-        loadDictJson(TranslationDictionary.class.getResourceAsStream(String.format(FILE_PATTERN, dictionaryAlias)));
+        loadDictJson(new FileInputStream(ResourceUtils.getFile(String.format(FILE_PATTERN, dictionaryAlias))));
     }
 
     /**

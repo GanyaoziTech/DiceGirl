@@ -1,51 +1,81 @@
 package tech.ganyaozi.warframe.stat.translate;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * @author derek.p.dai at 2019/5/24 10:02
  **/
 public class TranslationUtils {
 
-    private static TranslationDictionary alertDic;
-    private static TranslationDictionary commonDic;
-    private static TranslationDictionary invasionDic;
-    private static TranslationDictionary modifierDic;
-    private static TranslationDictionary nightwaveDic;
-    private static TranslationDictionary relicDic;
-    private static TranslationDictionary rivenDic;
-    private static TranslationDictionary saleDic;
+    private static final Logger loggerException = LoggerFactory.getLogger(TranslationUtils.class);
+    private static Map<DictionaryName, TranslationDictionary> dictionaryMap = new HashMap<>();
 
     static {
-        try {
-            alertDic = new TranslationDictionary("Alert");
-            commonDic = new TranslationDictionary("Dict");
-            invasionDic = new TranslationDictionary("Invasion");
-            modifierDic = new TranslationDictionary("Modifier");
-            nightwaveDic = new TranslationDictionary("NightWave");
-            relicDic = new TranslationDictionary("Relic");
-            rivenDic = new TranslationDictionary("Riven");
-            saleDic = new TranslationDictionary("sale");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stream.of(DictionaryName.values()).forEach(dictionaryName -> {
+            try {
+                dictionaryMap.put(dictionaryName, new TranslationDictionary(dictionaryName.name));
+            } catch (IOException e) {
+                loggerException.error("", e);
+            }
+        });
     }
 
-    public static String translateNightwave(String origin){
-        if (StringUtils.isEmpty(origin)){
+    public static String translate(DictionaryName dicName, String origin) {
+        if (StringUtils.isEmpty(origin)) {
             return origin;
         }
-        return nightwaveDic.translate(origin);
+        TranslationDictionary dic = dictionaryMap.get(dicName);
+        if (dic == null) {
+            return origin;
+        }
+        return dic.translate(origin);
     }
 
-    public static String translateCommon(String origin){
-        return commonDic.translate(origin);
-    }
+    public enum DictionaryName {
+        /**
+         * 警报词典
+         */
+        ALERT("Alert"),
+        /**
+         * 通用词典
+         */
+        COMMON("Dict"),
+        /**
+         * 入侵词典
+         */
+        INVASION("Invasion"),
+        /**
+         * 强化词典
+         */
+        MODIFIER("Modifier"),
+        /**
+         * 午夜电波词典
+         */
+        NIGHT_WAVE("NightWave"),
+        /**
+         * 虚空遗物
+         */
+        RELIC("Relic"),
+        /**
+         * 紫卡词典
+         */
+        RIVEN("Riven"),
+        /**
+         * 每日特惠词典
+         */
+        SALE("Sale");
+        private String name;
 
-    public static String translateModifier(String origin){
-        return modifierDic.translate(origin);
+        DictionaryName(String name) {
+            this.name = name;
+        }
     }
 
 
