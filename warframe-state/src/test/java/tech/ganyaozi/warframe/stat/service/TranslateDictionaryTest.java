@@ -1,5 +1,6 @@
 package tech.ganyaozi.warframe.stat.service;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import tech.ganyaozi.warframe.stat.dto.AllDTO;
 import tech.ganyaozi.warframe.stat.translate.TranslationDictionary;
 
 import java.io.IOException;

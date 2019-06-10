@@ -21,8 +21,10 @@ public class NightwaveDTO {
 
     private String id;
 
+    @JSONField(format="yyyy-MM-dd hh:mm:ss")
     private Date activation;
 
+    @JSONField(format="yyyy-MM-dd hh:mm:ss")
     private Date expiry;
 
     private JSONObject params;
@@ -46,8 +48,10 @@ public class NightwaveDTO {
 
         private String id;
 
+        @JSONField(format="yyyy-MM-dd hh:mm:ss")
         private Date activation;
 
+        @JSONField(format="yyyy-MM-dd hh:mm:ss")
         private Date expiry;
 
         private Boolean isDaily = false;

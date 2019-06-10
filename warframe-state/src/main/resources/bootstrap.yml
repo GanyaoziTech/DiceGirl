@@ -27,6 +27,7 @@ management:
 warframe-stat:
   domain: https://api.warframestat.us/
   api:
+    all: /
     alerts: /alerts
     cetus: /cetusCycle
     conclave: /conclaveChallenges

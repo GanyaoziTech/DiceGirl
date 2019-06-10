@@ -17,8 +17,10 @@ import java.util.List;
 public class SortieDTO {
 
     private String id;
+    @JSONField(format = "yyyy-MM-dd hh:mm:ss")
     private Date activation;
     private String startString;
+    @JSONField(format = "yyyy-MM-dd hh:mm:ss")
     private Date expiry;
     private Boolean active;
     private String rewardPool;
@@ -26,6 +28,7 @@ public class SortieDTO {
     private String boss;
     private String faction;
     private Boolean expired;
+
     private String eta;
 
     @Data

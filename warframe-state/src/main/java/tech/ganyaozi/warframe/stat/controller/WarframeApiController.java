@@ -1,6 +1,7 @@
 package tech.ganyaozi.warframe.stat.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tech.ganyaozi.warframe.stat.api.WarframeStatApi;
 import tech.ganyaozi.warframe.stat.consts.WarframeConst;
-import tech.ganyaozi.warframe.stat.dto.FissureDTO;
-import tech.ganyaozi.warframe.stat.dto.NightwaveDTO;
-import tech.ganyaozi.warframe.stat.dto.SortieDTO;
+import tech.ganyaozi.warframe.stat.dto.*;
 import tech.ganyaozi.warframe.stat.util.ApiResponse;
 
 import javax.annotation.Resource;
@@ -38,6 +37,33 @@ public class WarframeApiController {
     @Resource
     private WarframeStatApi warframeStatApi;
 
+    @GetMapping("/")
+    @ApiOperation(value = "所有信息", response = AllDTO.class)
+    public ApiResponse getAll(@ApiParam(required = true, allowableValues = "pc,xb1,ps4,swi")
+                              @RequestParam(defaultValue = "pc") String platform) {
+        try {
+            WarframeConst.Platform p = WarframeConst.Platform.parse(platform);
+            JSONObject resultJson = warframeStatApi.getAll(p);
+            return newSuccess(JSON.parseObject(resultJson.toJSONString(), AllDTO.class));
+        } catch (Exception e) {
+            loggerException.error("", e);
+            return newFail(e.getMessage(), null);
+        }
+    }
+
+    @GetMapping("/news")
+    @ApiOperation(value = "新闻", response = NewsDTO.class)
+    public ApiResponse getNews(@ApiParam(required = true, allowableValues = "pc,xb1,ps4,swi")
+                              @RequestParam(defaultValue = "pc") String platform) {
+        try {
+            WarframeConst.Platform p = WarframeConst.Platform.parse(platform);
+            JSONArray resultJson = warframeStatApi.getNews(p);
+            return newSuccess(JSON.parseArray(resultJson.toJSONString(), NewsDTO.class));
+        } catch (Exception e) {
+            loggerException.error("", e);
+            return newFail(e.getMessage(), null);
+        }
+    }
 
     @GetMapping("/nightwave")
     @ApiOperation(value = "午夜电波信息. The Current cycle and challenges of Nightwave, a battle-pass-esque rotation and challenge system.", response = NightwaveDTO.class)
@@ -80,4 +106,21 @@ public class WarframeApiController {
             return newFail(e.getMessage(), null);
         }
     }
+
+    @GetMapping("/cetus")
+    @ApiOperation(value = "希图斯信息", response = CetusDTO.class)
+    public ApiResponse getCetus(@ApiParam(required = true, allowableValues = "pc,xb1,ps4,swi")
+                                @RequestParam(defaultValue = "pc") String platform) {
+        try {
+            WarframeConst.Platform p = WarframeConst.Platform.parse(platform);
+            JSONObject resultJson = warframeStatApi.getCetusInfo(p);
+            return newSuccess(JSON.parseObject(resultJson.toString(), CetusDTO.class));
+        } catch (Exception e) {
+            loggerException.error("", e);
+            return newFail(e.getMessage(), null);
+        }
+    }
+
+
+
 }

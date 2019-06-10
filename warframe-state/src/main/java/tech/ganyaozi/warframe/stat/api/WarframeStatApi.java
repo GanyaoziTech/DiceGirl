@@ -44,10 +44,16 @@ public class WarframeStatApi {
     private String vallisCycle;
     private String voidTrader;
     private String sortie;
+    private String all;
+
 
     @Autowired
     public WarframeStatApi(WarframeConst constant) {
         this.constant = constant;
+    }
+
+    public JSONObject getAll(WarframeConst.Platform platform){
+        return sendGetAsJsonObject(platform,all);
     }
 
     /**
@@ -206,6 +212,7 @@ public class WarframeStatApi {
         } catch (Exception e) {
             loggerException.error("", e);
         }
+        //TODO  save to db
         return new JSONArray();
     }
 
@@ -215,6 +222,7 @@ public class WarframeStatApi {
         } catch (Exception e) {
             loggerException.error("", e);
         }
+        //TODO  save to db
         return new JSONObject();
     }
 }
