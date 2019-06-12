@@ -89,6 +89,11 @@
       "name": "warframe-stat.api.sortie",
       "type": "java.lang.String",
       "description": "本日突击 Data about the missions for the current sortie."
+    },
+    {
+      "name": "warframe-stat.api.all",
+      "type": "java.lang.String",
+      "description": "all message."
     }
   ]
 }

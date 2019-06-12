@@ -3,6 +3,7 @@ package tech.ganyaozi.warframe.stat.api;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import static org.junit.Assert.fail;
 /**
  * @author derek.p.dai at 2019/5/17 16:28
  **/
+@Ignore
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class WarframeStatApiTest {

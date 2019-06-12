@@ -12,7 +12,6 @@ import tech.ganyaozi.warframe.stat.consts.WarframeConst;
 import tech.ganyaozi.warframe.stat.util.OkHttpUtil;
 
 /**
- * TODO add redis as cache
  * <p>
  * Warframe Stat from <a href='https://api.warframestat.us/'>warframe stat</a>
  *
