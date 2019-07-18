@@ -66,7 +66,7 @@ public class WarframeApiController {
     }
 
     @GetMapping("/nightwave")
-    @ApiOperation(value = "午夜电波信息. The Current cycle and challenges of Nightwave, a battle-pass-esque rotation and challenge system.", response = NightwaveDTO.class)
+    @ApiOperation(value = "午夜电波信息.", response = NightwaveDTO.class)
     public ApiResponse getNightwaveInfo(@ApiParam(required = true, allowableValues = "pc,xb1,ps4,swi")
                                         @RequestParam(defaultValue = "pc") String platform) {
         try {
@@ -120,7 +120,5 @@ public class WarframeApiController {
             return newFail(e.getMessage(), null);
         }
     }
-
-
 
 }

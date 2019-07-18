@@ -24,8 +24,8 @@ public class CommonSerializer implements ObjectSerializer {
                 return;
             }
             //星球节点名称
-            String planetEN = node.substring(node.indexOf("(") + 1, node.indexOf(")"));
-            serializer.write(node.replace(planetEN, TranslationUtils.translate(TranslationUtils.DictionaryName.COMMON,planetEN)));
+            String planetEn = node.substring(node.indexOf("(") + 1, node.indexOf(")"));
+            serializer.write(node.replace(planetEn, TranslationUtils.translate(TranslationUtils.DictionaryName.COMMON,planetEn)));
         }else{
             String str = (String) object;
             if (StringUtils.isEmpty(str)) {
