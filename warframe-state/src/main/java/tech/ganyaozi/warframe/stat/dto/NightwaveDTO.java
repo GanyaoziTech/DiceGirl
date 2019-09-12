@@ -2,8 +2,10 @@ package tech.ganyaozi.warframe.stat.dto;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import tech.ganyaozi.warframe.stat.translate.serializer.NightwaveSerializer;
 
 import java.util.Date;
 import java.util.List;
@@ -15,12 +17,14 @@ import java.util.List;
  */
 @Data
 @ApiModel("午夜电波警报")
-public class NightWaveDTO {
+public class NightwaveDTO {
 
     private String id;
 
+    @JSONField(format="yyyy-MM-dd hh:mm:ss")
     private Date activation;
 
+    @JSONField(format="yyyy-MM-dd hh:mm:ss")
     private Date expiry;
 
     private JSONObject params;
@@ -44,16 +48,20 @@ public class NightWaveDTO {
 
         private String id;
 
+        @JSONField(format="yyyy-MM-dd hh:mm:ss")
         private Date activation;
 
+        @JSONField(format="yyyy-MM-dd hh:mm:ss")
         private Date expiry;
 
         private Boolean isDaily = false;
 
         private Boolean isElite;
 
+        @JSONField(serializeUsing = NightwaveSerializer.class)
         private String title;
 
+        @JSONField(serializeUsing = NightwaveSerializer.class)
         private String desc;
 
         private Integer reputation;

@@ -1,16 +1,15 @@
-package tech.ganyaozi.warframe.stat.service;
+package tech.ganyaozi.warframe.stat.translate;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -25,15 +24,16 @@ public class TranslationDictionary {
     /**
      * file path pattern
      */
-    private static final String FILE_PATTERN = "classpath:lexicon/WF_%s.json";
+    private static final String FILE_PATTERN = "lexicon/WF_%s.json";
 
     /**
      * EN to zhCN map
      */
     private HashMap<String, String> dictionary = new HashMap<>();
 
-    public TranslationDictionary(String dictionaryAlias, ResourceLoader resourceLoader) throws IOException {
-        loadDictJson(resourceLoader.getResource(String.format(FILE_PATTERN, dictionaryAlias)));
+    public TranslationDictionary(String dictionaryAlias) throws IOException {
+        ClassPathResource classPathResource = new ClassPathResource(String.format(FILE_PATTERN, dictionaryAlias));
+        loadDictJson(classPathResource.getInputStream());
     }
 
     /**
@@ -54,12 +54,11 @@ public class TranslationDictionary {
     /**
      * load translation dictionary from json file
      *
-     * @param file file
+     * @param fileInputStream file
      * @throws IOException e
      */
-    private void loadDictJson(Resource file) throws IOException {
+    private void loadDictJson(InputStream fileInputStream) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
-        try (FileInputStream fileInputStream = new FileInputStream(file.getFile())) {
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
             try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
                 String tempString;
@@ -73,8 +72,5 @@ public class TranslationDictionary {
                 JSONObject json = (JSONObject) obj;
                 dictionary.put(json.getString("en"), json.getString("zh"));
             });
-
-        }
     }
-
 }

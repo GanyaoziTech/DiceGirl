@@ -12,7 +12,6 @@ import tech.ganyaozi.warframe.stat.consts.WarframeConst;
 import tech.ganyaozi.warframe.stat.util.OkHttpUtil;
 
 /**
- * TODO add redis as cache
  * <p>
  * Warframe Stat from <a href='https://api.warframestat.us/'>warframe stat</a>
  *
@@ -43,10 +42,17 @@ public class WarframeStatApi {
     private String persistentEnemies;
     private String vallisCycle;
     private String voidTrader;
+    private String sortie;
+    private String all;
+
 
     @Autowired
     public WarframeStatApi(WarframeConst constant) {
         this.constant = constant;
+    }
+
+    public JSONObject getAll(WarframeConst.Platform platform){
+        return sendGetAsJsonObject(platform,all);
     }
 
     /**
@@ -195,12 +201,17 @@ public class WarframeStatApi {
         return sendGetAsJsonObject(platform, voidTrader);
     }
 
+    public JSONObject getSortie(WarframeConst.Platform platform) {
+        return sendGetAsJsonObject(platform, sortie);
+    }
+
     private JSONArray sendGetAsJsonArray(WarframeConst.Platform platform, String path) {
         try {
             return OkHttpUtil.sendGetAsJsonArray(constant.domain + platform.getAlias() + path);
         } catch (Exception e) {
             loggerException.error("", e);
         }
+        //TODO  save to db
         return new JSONArray();
     }
 
@@ -210,6 +221,7 @@ public class WarframeStatApi {
         } catch (Exception e) {
             loggerException.error("", e);
         }
+        //TODO  save to db
         return new JSONObject();
     }
 }
