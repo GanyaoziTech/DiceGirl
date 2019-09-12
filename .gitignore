@@ -17,3 +17,5 @@ server/dice.girl.IM/server/target/
 server/dice.girl.Weixin/log/
 server/dice.girl.Weixin/target/
 */.idea/
+
+*/logs/

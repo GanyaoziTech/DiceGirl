@@ -6,9 +6,9 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
     <appender name="R" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/home/logs/warframe-state/exception.log</File>
+        <File>logs/warframe-state/exception.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/home/logs/app/exception.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>logs/app/exception.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>256MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -37,9 +37,9 @@
     </appender>
 
     <appender name="business" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/home/logs/warframe-state/business.log</File>
+        <File>logs/warframe-state/business.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/home/logs/app/business.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>logs/app/business.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>256MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
