@@ -20,7 +20,7 @@
         <commons-math3.version>3.5</commons-math3.version>
         <commons-configuration.version>2.1.1</commons-configuration.version>
         <apache.httpcomponents.httpcore>4.4.6</apache.httpcomponents.httpcore>
-        <apache.httpcomponents.httpclient>4.5.3</apache.httpcomponents.httpclient>
+        <apache.httpcomponents.httpclient>4.5.13</apache.httpcomponents.httpclient>
     </properties>
 
     <dependencies>
